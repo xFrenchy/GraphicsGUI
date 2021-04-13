@@ -45,6 +45,11 @@ struct Specular {
 //	Shiny::Shiny() { r = 0.0; g = 0.0; b = 0.0; }
 //};
 
+struct LightLocation {
+	int x, y, z, d = 0;	//4th value is pointlight or directional light
+	LightLocation::LightLocation() { x = 0; y = 0; z = 0; d = 0; }
+};
+
 class QViewport : public QOpenGLWidget {
 	Q_OBJECT
 
@@ -76,6 +81,7 @@ public:
 	int lightSelected;
 	bool isPointLight[3];
 	bool isLightEnabled[3];
+	LightLocation lightCoord[3];
 	Ambient ambLight[3];
 	Diffuse difLight[3];
 	Specular specLight[3];

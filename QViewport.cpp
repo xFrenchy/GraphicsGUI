@@ -17,8 +17,13 @@ QViewport::QViewport(QWidget *parent) {
 	for (int i = 0; i < 3; ++i) {
 		this->isPointLight[i] = true;
 		this->isLightEnabled[i] = false;
+		this->lightCoord[i].x = -22;
+		this->lightCoord[i].y = 22;
+		this->lightCoord[i].z = 22;
+		this->lightCoord[i].d = 1;
 	}
 	this->lightSelected = 0;	//this will be the index for the light arrays
+	
 }
 QViewport::~QViewport() {
 
@@ -45,7 +50,7 @@ void QViewport::paintGL() {
 		GLfloat ambient[] = { ambLight[lightSelected].r, ambLight[lightSelected].g, ambLight[lightSelected].b, ambLight[lightSelected].a };
 		GLfloat diffuse[] = { difLight[lightSelected].r, difLight[lightSelected].g, difLight[lightSelected].b, difLight[lightSelected].a };
 		GLfloat specular[] = { specLight[lightSelected].r, specLight[lightSelected].g, specLight[lightSelected].b, 1 - specLight[lightSelected].a };
-		GLfloat position[] = { -22.0, 22.0, 22.0, (int)isPointLight[lightSelected] };	//0 value for the last argument means infinite distance away
+		GLfloat position[] = { lightCoord[lightSelected].x, lightCoord[lightSelected].y, lightCoord[lightSelected].z, (int)isPointLight[lightSelected] };	//0 value for the last argument means infinite distance away
 		glLightfv(GL_LIGHT0 + lightSelected, GL_POSITION, position);
 
 		glLightfv(GL_LIGHT0 + lightSelected, GL_AMBIENT, ambient);
@@ -186,7 +191,12 @@ void QViewport::clear()
 	for (int i = 0; i < 3; ++i) {
 		this->isPointLight[i] = true;
 		this->isLightEnabled[i] = false;
+		this->lightCoord[i].x = -22;
+		this->lightCoord[i].y = 22;
+		this->lightCoord[i].z = 22;
+		this->lightCoord[i].d = 1;
 	}
+
 	for (int i = 0; i < 40000; ++i) {
 		if (i < 20000) {
 			vertex[i].x = vertex[i].y = vertex[i].z = 0.0;
