@@ -348,7 +348,7 @@ public:
         ShinyBox->setGeometry(QRect(80, 280, 40, 16));
         ShinyBox->setMinimum(0);
         ShinyBox->setMaximum(10);
-        ShinyBox->setValue(0);
+        ShinyBox->setValue(1);
         layoutWidget->raise();
         OooWhee->raise();
         label_2->raise();
@@ -447,6 +447,11 @@ public:
         QObject::connect(xBox, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateLightCoord(int)));
         QObject::connect(yBox, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateLightCoord(int)));
         QObject::connect(zBox, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateLightCoord(int)));
+        QObject::connect(MatAmbR, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateAmbient(int)));
+        QObject::connect(MatAmbG, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateAmbient(int)));
+        QObject::connect(MatDiffB, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateAmbient(int)));
+        QObject::connect(MatAmbB, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateAmbient(int)));
+        QObject::connect(ShinyBox, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateShiny(int)));
 
         QMetaObject::connectSlotsByName(MyOwnQtPracticeClass);
     } // setupUi
@@ -457,7 +462,7 @@ public:
         OooWhee->setText(QApplication::translate("MyOwnQtPracticeClass", "OooWhee", nullptr));
         label_2->setText(QApplication::translate("MyOwnQtPracticeClass", "y direction", nullptr));
         label_3->setText(QApplication::translate("MyOwnQtPracticeClass", "z direction", nullptr));
-        ClearButton->setText(QApplication::translate("MyOwnQtPracticeClass", "Clear Screen", nullptr));
+        ClearButton->setText(QApplication::translate("MyOwnQtPracticeClass", "Reset", nullptr));
         ModelLabel->setText(QApplication::translate("MyOwnQtPracticeClass", "Model Name: ", nullptr));
         label->setText(QApplication::translate("MyOwnQtPracticeClass", "x direction", nullptr));
         ModelPicker->setItemText(0, QApplication::translate("MyOwnQtPracticeClass", "Blender", nullptr));

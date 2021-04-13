@@ -128,7 +128,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Clear Screen</string>
+        <string>Reset</string>
        </property>
       </widget>
       <widget class="QLabel" name="ModelLabel">
@@ -875,7 +875,7 @@
         <number>10</number>
        </property>
        <property name="value">
-        <number>0</number>
+        <number>1</number>
        </property>
       </widget>
       <zorder>layoutWidget</zorder>
@@ -1312,6 +1312,86 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>MatAmbR</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MyOwnQtPracticeClass</receiver>
+   <slot>updateAmbient(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>69</x>
+     <y>267</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MatAmbG</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MyOwnQtPracticeClass</receiver>
+   <slot>updateAmbient(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>99</x>
+     <y>267</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MatDiffB</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MyOwnQtPracticeClass</receiver>
+   <slot>updateAmbient(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>139</x>
+     <y>287</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MatAmbB</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MyOwnQtPracticeClass</receiver>
+   <slot>updateAmbient(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>139</x>
+     <y>267</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ShinyBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MyOwnQtPracticeClass</receiver>
+   <slot>updateShiny(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>108</x>
+     <y>329</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>xChangeLevel(int)</slot>
@@ -1327,5 +1407,6 @@
   <slot>toggleEnableLight()</slot>
   <slot>selectLight(QString)</slot>
   <slot>updateLightCoord(int)</slot>
+  <slot>updateShiny(int)</slot>
  </slots>
 </ui>
