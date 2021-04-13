@@ -346,8 +346,8 @@ public:
         ShinyBox = new QSpinBox(widget);
         ShinyBox->setObjectName(QString::fromUtf8("ShinyBox"));
         ShinyBox->setGeometry(QRect(80, 280, 40, 16));
-        ShinyBox->setMinimum(0);
-        ShinyBox->setMaximum(10);
+        ShinyBox->setMinimum(1);
+        ShinyBox->setMaximum(128);
         ShinyBox->setValue(1);
         layoutWidget->raise();
         OooWhee->raise();
@@ -449,9 +449,14 @@ public:
         QObject::connect(zBox, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateLightCoord(int)));
         QObject::connect(MatAmbR, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateAmbient(int)));
         QObject::connect(MatAmbG, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateAmbient(int)));
-        QObject::connect(MatDiffB, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateAmbient(int)));
+        QObject::connect(MatDiffB, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateDiffuse(int)));
         QObject::connect(MatAmbB, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateAmbient(int)));
         QObject::connect(ShinyBox, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateShiny(int)));
+        QObject::connect(MatDiffG, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateDiffuse(int)));
+        QObject::connect(MatDiffR, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateDiffuse(int)));
+        QObject::connect(MatSpecR, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateSpecular(int)));
+        QObject::connect(MatSpecG, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateSpecular(int)));
+        QObject::connect(MatSpecB, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateSpecular(int)));
 
         QMetaObject::connectSlotsByName(MyOwnQtPracticeClass);
     } // setupUi
