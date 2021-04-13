@@ -864,7 +864,7 @@
    <sender>LightPicker</sender>
    <signal>activated(QString)</signal>
    <receiver>MyOwnQtPracticeClass</receiver>
-   <slot>selectLight()</slot>
+   <slot>selectLight(QString)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>193</x>
@@ -889,6 +889,6 @@
   <slot>updateDiffuse(int)</slot>
   <slot>toggleLightDistance()</slot>
   <slot>toggleEnableLight()</slot>
-  <slot>selectLight()</slot>
+  <slot>selectLight(QString)</slot>
  </slots>
 </ui>
