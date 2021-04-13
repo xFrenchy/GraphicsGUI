@@ -20,6 +20,7 @@
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
@@ -68,6 +69,12 @@ public:
     QPushButton *LightDistanceButton;
     QComboBox *LightPicker;
     QPushButton *EnableLightButton;
+    QLabel *label_14;
+    QSpinBox *xBox;
+    QLabel *label_15;
+    QSpinBox *yBox;
+    QLabel *label_16;
+    QSpinBox *zBox;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -174,7 +181,7 @@ public:
         label_7->setGeometry(QRect(120, 100, 47, 13));
         label_8 = new QLabel(widget);
         label_8->setObjectName(QString::fromUtf8("label_8"));
-        label_8->setGeometry(QRect(0, 160, 47, 13));
+        label_8->setGeometry(QRect(0, 160, 51, 13));
         SpecR = new QDial(widget);
         SpecR->setObjectName(QString::fromUtf8("SpecR"));
         SpecR->setGeometry(QRect(50, 150, 21, 31));
@@ -223,6 +230,31 @@ public:
         EnableLightButton = new QPushButton(widget);
         EnableLightButton->setObjectName(QString::fromUtf8("EnableLightButton"));
         EnableLightButton->setGeometry(QRect(220, 110, 101, 31));
+        label_14 = new QLabel(widget);
+        label_14->setObjectName(QString::fromUtf8("label_14"));
+        label_14->setGeometry(QRect(130, 180, 47, 13));
+        xBox = new QSpinBox(widget);
+        xBox->setObjectName(QString::fromUtf8("xBox"));
+        xBox->setGeometry(QRect(180, 180, 40, 16));
+        xBox->setMinimum(-50);
+        xBox->setMaximum(50);
+        xBox->setValue(0);
+        label_15 = new QLabel(widget);
+        label_15->setObjectName(QString::fromUtf8("label_15"));
+        label_15->setGeometry(QRect(225, 180, 47, 13));
+        yBox = new QSpinBox(widget);
+        yBox->setObjectName(QString::fromUtf8("yBox"));
+        yBox->setGeometry(QRect(233, 180, 40, 16));
+        yBox->setMinimum(-50);
+        yBox->setMaximum(50);
+        label_16 = new QLabel(widget);
+        label_16->setObjectName(QString::fromUtf8("label_16"));
+        label_16->setGeometry(QRect(276, 180, 47, 13));
+        zBox = new QSpinBox(widget);
+        zBox->setObjectName(QString::fromUtf8("zBox"));
+        zBox->setGeometry(QRect(285, 180, 40, 16));
+        zBox->setMinimum(-50);
+        zBox->setMaximum(50);
         layoutWidget->raise();
         OooWhee->raise();
         label_2->raise();
@@ -256,6 +288,12 @@ public:
         LightDistanceButton->raise();
         LightPicker->raise();
         EnableLightButton->raise();
+        label_14->raise();
+        label_15->raise();
+        label_16->raise();
+        xBox->raise();
+        yBox->raise();
+        zBox->raise();
 
         gridLayout->addWidget(widget, 0, 0, 1, 1);
 
@@ -290,6 +328,9 @@ public:
         QObject::connect(LightDistanceButton, SIGNAL(pressed()), MyOwnQtPracticeClass, SLOT(toggleLightDistance()));
         QObject::connect(EnableLightButton, SIGNAL(pressed()), MyOwnQtPracticeClass, SLOT(toggleEnableLight()));
         QObject::connect(LightPicker, SIGNAL(activated(QString)), MyOwnQtPracticeClass, SLOT(selectLight(QString)));
+        QObject::connect(xBox, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateLightCoord(int)));
+        QObject::connect(yBox, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateLightCoord(int)));
+        QObject::connect(zBox, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateLightCoord(int)));
 
         QMetaObject::connectSlotsByName(MyOwnQtPracticeClass);
     } // setupUi
@@ -331,6 +372,9 @@ public:
         LightPicker->setItemText(2, QApplication::translate("MyOwnQtPracticeClass", "Light3", nullptr));
 
         EnableLightButton->setText(QApplication::translate("MyOwnQtPracticeClass", "Enable Light(1)", nullptr));
+        label_14->setText(QApplication::translate("MyOwnQtPracticeClass", "Position X", nullptr));
+        label_15->setText(QApplication::translate("MyOwnQtPracticeClass", "Y", nullptr));
+        label_16->setText(QApplication::translate("MyOwnQtPracticeClass", "Z", nullptr));
     } // retranslateUi
 
 };

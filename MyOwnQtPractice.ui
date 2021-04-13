@@ -329,7 +329,7 @@
         <rect>
          <x>0</x>
          <y>160</y>
-         <width>47</width>
+         <width>51</width>
          <height>13</height>
         </rect>
        </property>
@@ -518,6 +518,96 @@
         <string>Enable Light(1)</string>
        </property>
       </widget>
+      <widget class="QLabel" name="label_14">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>180</y>
+         <width>47</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Position X</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="xBox">
+       <property name="geometry">
+        <rect>
+         <x>180</x>
+         <y>180</y>
+         <width>40</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>-50</number>
+       </property>
+       <property name="maximum">
+        <number>50</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_15">
+       <property name="geometry">
+        <rect>
+         <x>225</x>
+         <y>180</y>
+         <width>47</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Y</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="yBox">
+       <property name="geometry">
+        <rect>
+         <x>233</x>
+         <y>180</y>
+         <width>40</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>-50</number>
+       </property>
+       <property name="maximum">
+        <number>50</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_16">
+       <property name="geometry">
+        <rect>
+         <x>276</x>
+         <y>180</y>
+         <width>47</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Z</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="zBox">
+       <property name="geometry">
+        <rect>
+         <x>285</x>
+         <y>180</y>
+         <width>40</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>-50</number>
+       </property>
+       <property name="maximum">
+        <number>50</number>
+       </property>
+      </widget>
       <zorder>layoutWidget</zorder>
       <zorder>OooWhee</zorder>
       <zorder>label_2</zorder>
@@ -551,6 +641,12 @@
       <zorder>LightDistanceButton</zorder>
       <zorder>LightPicker</zorder>
       <zorder>EnableLightButton</zorder>
+      <zorder>label_14</zorder>
+      <zorder>label_15</zorder>
+      <zorder>label_16</zorder>
+      <zorder>xBox</zorder>
+      <zorder>yBox</zorder>
+      <zorder>zBox</zorder>
      </widget>
     </item>
    </layout>
@@ -876,6 +972,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>xBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MyOwnQtPracticeClass</receiver>
+   <slot>updateLightCoord(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>214</x>
+     <y>229</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>yBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MyOwnQtPracticeClass</receiver>
+   <slot>updateLightCoord(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>264</x>
+     <y>229</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>zBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MyOwnQtPracticeClass</receiver>
+   <slot>updateLightCoord(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>314</x>
+     <y>229</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>xChangeLevel(int)</slot>
@@ -890,5 +1034,6 @@
   <slot>toggleLightDistance()</slot>
   <slot>toggleEnableLight()</slot>
   <slot>selectLight(QString)</slot>
+  <slot>updateLightCoord(int)</slot>
  </slots>
 </ui>
