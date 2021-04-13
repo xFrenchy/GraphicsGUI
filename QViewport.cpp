@@ -12,6 +12,7 @@ QViewport::QViewport(QWidget *parent) {
 	this->zSlider = 0;
 	this->vertices_qty = 0;
 	this->polygons_qty = 0;
+	this->shiny = 1;
 	this->modelName = "";
 	this->isRendered = false;
 	for (int i = 0; i < 3; ++i) {
@@ -43,25 +44,25 @@ void QViewport::paintGL() {
 	glBindTexture(GL_TEXTURE_2D, 1);
 
 	if (isLightEnabled[lightSelected]) {
+		GLfloat ambientLight[] = { ambLight[lightSelected].r, ambLight[lightSelected].g, ambLight[lightSelected].b, ambLight[lightSelected].a };
+		GLfloat diffuseLight[] = { difLight[lightSelected].r, difLight[lightSelected].g, difLight[lightSelected].b, difLight[lightSelected].a };
+		GLfloat specularLight[] = { specLight[lightSelected].r, specLight[lightSelected].g, specLight[lightSelected].b, specLight[lightSelected].a };
 
-		switch (lightSelected) {
+		GLfloat positionLight[] = { lightCoord[lightSelected].x, lightCoord[lightSelected].y, lightCoord[lightSelected].z, (int)isPointLight[lightSelected] };	//0 value for the last argument means infinite distance away
+		glLightfv(GL_LIGHT0 + lightSelected, GL_POSITION, positionLight);
 
-		}
-		GLfloat ambient[] = { ambLight[lightSelected].r, ambLight[lightSelected].g, ambLight[lightSelected].b, ambLight[lightSelected].a };
-		GLfloat diffuse[] = { difLight[lightSelected].r, difLight[lightSelected].g, difLight[lightSelected].b, difLight[lightSelected].a };
-		GLfloat specular[] = { specLight[lightSelected].r, specLight[lightSelected].g, specLight[lightSelected].b, 1 - specLight[lightSelected].a };
-		GLfloat position[] = { lightCoord[lightSelected].x, lightCoord[lightSelected].y, lightCoord[lightSelected].z, (int)isPointLight[lightSelected] };	//0 value for the last argument means infinite distance away
-		glLightfv(GL_LIGHT0 + lightSelected, GL_POSITION, position);
+		glLightfv(GL_LIGHT0 + lightSelected, GL_AMBIENT, ambientLight);
+		glLightfv(GL_LIGHT0 + lightSelected, GL_DIFFUSE, diffuseLight);
+		glLightfv(GL_LIGHT0 + lightSelected, GL_SPECULAR, specularLight);
 
-		glLightfv(GL_LIGHT0 + lightSelected, GL_AMBIENT, ambient);
-		glLightfv(GL_LIGHT0 + lightSelected, GL_DIFFUSE, diffuse);
-		glLightfv(GL_LIGHT0 + lightSelected, GL_SPECULAR, specular);
+		GLfloat ambientMat[] = { ambMat.r, ambMat.g, ambMat.b, ambMat.a };
+		GLfloat diffuseMat[] = { difMat.r, difMat.g, difMat.b, difMat.a };
+		GLfloat specularMat[] = { specMat.r, specMat.g, specMat.b, specMat.a };
 
-
-		//glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
-		//glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
-		//glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
-		//glMaterialf(GL_FRONT, GL_SHININESS, 1.0f);
+		glMaterialfv(GL_FRONT, GL_AMBIENT, ambientMat);
+		//glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuseMat);
+		glMaterialfv(GL_FRONT, GL_SPECULAR, specularMat);
+		glMaterialf(GL_FRONT, GL_SHININESS, GLfloat(shiny));
 	}
 
 	glBegin(GL_TRIANGLES);
@@ -188,6 +189,7 @@ void QViewport::clear()
 	this->polygons_qty = 0;
 	this->modelName = "";
 	this->isRendered = false;
+	this->shiny = 1;
 	for (int i = 0; i < 3; ++i) {
 		this->isPointLight[i] = true;
 		this->isLightEnabled[i] = false;
@@ -196,6 +198,7 @@ void QViewport::clear()
 		this->lightCoord[i].z = 22;
 		this->lightCoord[i].d = 1;
 	}
+	//TODO: Reset light and material values
 
 	for (int i = 0; i < 40000; ++i) {
 		if (i < 20000) {

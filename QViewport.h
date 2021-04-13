@@ -35,10 +35,10 @@ struct Specular {
 	Specular::Specular() { r = 0.0; g = 0.0; b = 0.0; a = 1.0; }
 };
 
-struct Material {
-	float r, g, b = 0;
-	Material::Material() { r = 0.0; g = 0.0; b = 0.0; }
-};
+//struct Material {
+//	float r, g, b = 0;
+//	Material::Material() { r = 0.0; g = 0.0; b = 0.0; }
+//};
 
 //struct Shiny {
 //	float r, g, b = 0;
@@ -86,7 +86,10 @@ public:
 	Specular specLight[3];
 	
 	//---Material information about current model
-
+	Ambient ambMat;
+	Diffuse difMat;
+	Specular specMat;
+	int shiny;
 
 private:
 
