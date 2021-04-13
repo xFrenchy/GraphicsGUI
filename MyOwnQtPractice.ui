@@ -268,7 +268,7 @@
         <string>Ambient R</string>
        </property>
       </widget>
-      <widget class="QDial" name="AmbR">
+      <widget class="QDial" name="LightAmbR">
        <property name="geometry">
         <rect>
          <x>50</x>
@@ -291,7 +291,7 @@
         <string>G</string>
        </property>
       </widget>
-      <widget class="QDial" name="AmbG">
+      <widget class="QDial" name="LightAmbG">
        <property name="geometry">
         <rect>
          <x>90</x>
@@ -301,7 +301,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QDial" name="AmbB">
+      <widget class="QDial" name="LightAmbB">
        <property name="geometry">
         <rect>
          <x>130</x>
@@ -337,7 +337,7 @@
         <string>Specular R</string>
        </property>
       </widget>
-      <widget class="QDial" name="SpecR">
+      <widget class="QDial" name="LightSpecR">
        <property name="geometry">
         <rect>
          <x>50</x>
@@ -360,7 +360,7 @@
         <string>G</string>
        </property>
       </widget>
-      <widget class="QDial" name="SpecG">
+      <widget class="QDial" name="LightSpecG">
        <property name="geometry">
         <rect>
          <x>90</x>
@@ -383,7 +383,7 @@
         <string>B        </string>
        </property>
       </widget>
-      <widget class="QDial" name="SpecB">
+      <widget class="QDial" name="LightSpecB">
        <property name="geometry">
         <rect>
          <x>130</x>
@@ -419,7 +419,7 @@
         <string>B        </string>
        </property>
       </widget>
-      <widget class="QDial" name="DiffB">
+      <widget class="QDial" name="LightDiffB">
        <property name="geometry">
         <rect>
          <x>130</x>
@@ -429,7 +429,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QDial" name="DiffR">
+      <widget class="QDial" name="LightDiffR">
        <property name="geometry">
         <rect>
          <x>50</x>
@@ -439,7 +439,7 @@
         </rect>
        </property>
       </widget>
-      <widget class="QDial" name="DiffG">
+      <widget class="QDial" name="LightDiffG">
        <property name="geometry">
         <rect>
          <x>90</x>
@@ -459,7 +459,7 @@
         </rect>
        </property>
        <property name="text">
-        <string>Diffuse R</string>
+        <string>Diffuse  R</string>
        </property>
       </widget>
       <widget class="QPushButton" name="LightDistanceButton">
@@ -608,6 +608,276 @@
         <number>50</number>
        </property>
       </widget>
+      <widget class="QLabel" name="label_17">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>200</y>
+         <width>321</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_18">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>210</y>
+         <width>47</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>Material</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_19">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>220</y>
+         <width>47</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Ambient R</string>
+       </property>
+      </widget>
+      <widget class="QDial" name="MatAmbR">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>210</y>
+         <width>21</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_20">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>220</y>
+         <width>47</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>G</string>
+       </property>
+      </widget>
+      <widget class="QDial" name="MatAmbG">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>210</y>
+         <width>21</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_21">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>220</y>
+         <width>47</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>B        </string>
+       </property>
+      </widget>
+      <widget class="QDial" name="MatAmbB">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>210</y>
+         <width>21</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_22">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>240</y>
+         <width>47</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Diffuse  R</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_23">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>240</y>
+         <width>47</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>B        </string>
+       </property>
+      </widget>
+      <widget class="QDial" name="MatDiffG">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>230</y>
+         <width>21</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_24">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>240</y>
+         <width>47</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>G</string>
+       </property>
+      </widget>
+      <widget class="QDial" name="MatDiffB">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>230</y>
+         <width>21</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QDial" name="MatDiffR">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>230</y>
+         <width>21</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QDial" name="MatSpecR">
+       <property name="geometry">
+        <rect>
+         <x>50</x>
+         <y>250</y>
+         <width>21</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_25">
+       <property name="geometry">
+        <rect>
+         <x>70</x>
+         <y>260</y>
+         <width>47</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>G</string>
+       </property>
+      </widget>
+      <widget class="QDial" name="MatSpecG">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>250</y>
+         <width>21</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_26">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>260</y>
+         <width>51</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Specular R</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_27">
+       <property name="geometry">
+        <rect>
+         <x>110</x>
+         <y>260</y>
+         <width>47</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>B        </string>
+       </property>
+      </widget>
+      <widget class="QDial" name="MatSpecB">
+       <property name="geometry">
+        <rect>
+         <x>120</x>
+         <y>250</y>
+         <width>21</width>
+         <height>31</height>
+        </rect>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_28">
+       <property name="geometry">
+        <rect>
+         <x>30</x>
+         <y>280</y>
+         <width>47</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Shininess</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="ShinyBox">
+       <property name="geometry">
+        <rect>
+         <x>80</x>
+         <y>280</y>
+         <width>40</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>0</number>
+       </property>
+       <property name="maximum">
+        <number>10</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+      </widget>
       <zorder>layoutWidget</zorder>
       <zorder>OooWhee</zorder>
       <zorder>label_2</zorder>
@@ -621,22 +891,22 @@
       <zorder>ModelPicker</zorder>
       <zorder>label_4</zorder>
       <zorder>label_5</zorder>
-      <zorder>AmbR</zorder>
+      <zorder>LightAmbR</zorder>
       <zorder>label_6</zorder>
-      <zorder>AmbG</zorder>
+      <zorder>LightAmbG</zorder>
       <zorder>label_7</zorder>
-      <zorder>AmbB</zorder>
+      <zorder>LightAmbB</zorder>
       <zorder>label_8</zorder>
-      <zorder>SpecR</zorder>
+      <zorder>LightSpecR</zorder>
       <zorder>label_9</zorder>
-      <zorder>SpecG</zorder>
+      <zorder>LightSpecG</zorder>
       <zorder>label_10</zorder>
-      <zorder>SpecB</zorder>
+      <zorder>LightSpecB</zorder>
       <zorder>label_11</zorder>
       <zorder>label_12</zorder>
-      <zorder>DiffB</zorder>
-      <zorder>DiffR</zorder>
-      <zorder>DiffG</zorder>
+      <zorder>LightDiffB</zorder>
+      <zorder>LightDiffR</zorder>
+      <zorder>LightDiffG</zorder>
       <zorder>label_13</zorder>
       <zorder>LightDistanceButton</zorder>
       <zorder>LightPicker</zorder>
@@ -647,6 +917,28 @@
       <zorder>xBox</zorder>
       <zorder>yBox</zorder>
       <zorder>zBox</zorder>
+      <zorder>label_17</zorder>
+      <zorder>label_18</zorder>
+      <zorder>label_19</zorder>
+      <zorder>MatAmbR</zorder>
+      <zorder>label_20</zorder>
+      <zorder>MatAmbG</zorder>
+      <zorder>label_21</zorder>
+      <zorder>MatAmbB</zorder>
+      <zorder>label_22</zorder>
+      <zorder>label_23</zorder>
+      <zorder>label_24</zorder>
+      <zorder>MatDiffB</zorder>
+      <zorder>MatDiffR</zorder>
+      <zorder>MatDiffG</zorder>
+      <zorder>MatSpecR</zorder>
+      <zorder>label_25</zorder>
+      <zorder>MatSpecG</zorder>
+      <zorder>label_26</zorder>
+      <zorder>label_27</zorder>
+      <zorder>MatSpecB</zorder>
+      <zorder>label_28</zorder>
+      <zorder>ShinyBox</zorder>
      </widget>
     </item>
    </layout>
@@ -781,7 +1073,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>AmbR</sender>
+   <sender>LightAmbR</sender>
    <signal>valueChanged(int)</signal>
    <receiver>MyOwnQtPracticeClass</receiver>
    <slot>updateAmbient(int)</slot>
@@ -797,7 +1089,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>AmbG</sender>
+   <sender>LightAmbG</sender>
    <signal>valueChanged(int)</signal>
    <receiver>MyOwnQtPracticeClass</receiver>
    <slot>updateAmbient(int)</slot>
@@ -813,7 +1105,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>AmbB</sender>
+   <sender>LightAmbB</sender>
    <signal>valueChanged(int)</signal>
    <receiver>MyOwnQtPracticeClass</receiver>
    <slot>updateAmbient(int)</slot>
@@ -829,7 +1121,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>SpecR</sender>
+   <sender>LightSpecR</sender>
    <signal>valueChanged(int)</signal>
    <receiver>MyOwnQtPracticeClass</receiver>
    <slot>updateSpecular(int)</slot>
@@ -845,7 +1137,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>SpecG</sender>
+   <sender>LightSpecG</sender>
    <signal>valueChanged(int)</signal>
    <receiver>MyOwnQtPracticeClass</receiver>
    <slot>updateSpecular(int)</slot>
@@ -861,7 +1153,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>SpecB</sender>
+   <sender>LightSpecB</sender>
    <signal>valueChanged(int)</signal>
    <receiver>MyOwnQtPracticeClass</receiver>
    <slot>updateSpecular(int)</slot>
@@ -877,7 +1169,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>DiffR</sender>
+   <sender>LightDiffR</sender>
    <signal>valueChanged(int)</signal>
    <receiver>MyOwnQtPracticeClass</receiver>
    <slot>updateDiffuse(int)</slot>
@@ -893,7 +1185,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>DiffG</sender>
+   <sender>LightDiffG</sender>
    <signal>valueChanged(int)</signal>
    <receiver>MyOwnQtPracticeClass</receiver>
    <slot>updateDiffuse(int)</slot>
@@ -909,7 +1201,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>DiffB</sender>
+   <sender>LightDiffB</sender>
    <signal>valueChanged(int)</signal>
    <receiver>MyOwnQtPracticeClass</receiver>
    <slot>updateDiffuse(int)</slot>
