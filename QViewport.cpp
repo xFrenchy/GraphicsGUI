@@ -58,10 +58,10 @@ void QViewport::paintGL() {
 		glLightfv(GL_LIGHT0 + lightSelected, GL_SPECULAR, specular);
 
 
-		glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
-		glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
-		glMaterialf(GL_FRONT, GL_SHININESS, 1.0f);
+		//glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
+		//glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
+		//glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+		//glMaterialf(GL_FRONT, GL_SHININESS, 1.0f);
 	}
 
 	glBegin(GL_TRIANGLES);

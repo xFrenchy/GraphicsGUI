@@ -20,11 +20,6 @@ struct Coordinates {
 	Coordinates::Coordinates() { u = 0.0; v = 0.0; }
 };
 
-//struct Material {
-//	float r, g, b = 0;
-//	Material::Material() { r = 0.0; g = 0.0; b = 0.0; }
-//};
-
 struct Ambient {
 	float r, g, b, a = 0;
 	Ambient::Ambient() { r = 0.0; g = 0.0; b = 0.0; a = 1.0; }
@@ -38,6 +33,11 @@ struct Diffuse {
 struct Specular {
 	float r, g, b, a = 0;
 	Specular::Specular() { r = 0.0; g = 0.0; b = 0.0; a = 1.0; }
+};
+
+struct Material {
+	float r, g, b = 0;
+	Material::Material() { r = 0.0; g = 0.0; b = 0.0; }
 };
 
 //struct Shiny {
@@ -77,7 +77,6 @@ public:
 	bool isRendered;
 
 	//---Lighting information about current model
-	//Material matLight;
 	int lightSelected;
 	bool isPointLight[3];
 	bool isLightEnabled[3];
@@ -85,7 +84,9 @@ public:
 	Ambient ambLight[3];
 	Diffuse difLight[3];
 	Specular specLight[3];
-	//Shiny shinyLight;
+	
+	//---Material information about current model
+
 
 private:
 
