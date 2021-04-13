@@ -869,10 +869,10 @@
         </rect>
        </property>
        <property name="minimum">
-        <number>0</number>
+        <number>1</number>
        </property>
        <property name="maximum">
-        <number>10</number>
+        <number>128</number>
        </property>
        <property name="value">
         <number>1</number>
@@ -1348,7 +1348,7 @@
    <sender>MatDiffB</sender>
    <signal>valueChanged(int)</signal>
    <receiver>MyOwnQtPracticeClass</receiver>
-   <slot>updateAmbient(int)</slot>
+   <slot>updateDiffuse(int)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>139</x>
@@ -1385,6 +1385,86 @@
     <hint type="sourcelabel">
      <x>108</x>
      <y>329</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MatDiffG</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MyOwnQtPracticeClass</receiver>
+   <slot>updateDiffuse(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>99</x>
+     <y>287</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MatDiffR</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MyOwnQtPracticeClass</receiver>
+   <slot>updateDiffuse(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>69</x>
+     <y>287</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MatSpecR</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MyOwnQtPracticeClass</receiver>
+   <slot>updateSpecular(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>69</x>
+     <y>307</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MatSpecG</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MyOwnQtPracticeClass</receiver>
+   <slot>updateSpecular(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>99</x>
+     <y>307</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>MatSpecB</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MyOwnQtPracticeClass</receiver>
+   <slot>updateSpecular(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>139</x>
+     <y>307</y>
     </hint>
     <hint type="destinationlabel">
      <x>335</x>
