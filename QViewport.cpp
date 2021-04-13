@@ -60,7 +60,7 @@ void QViewport::paintGL() {
 		GLfloat specularMat[] = { specMat.r, specMat.g, specMat.b, specMat.a };
 
 		glMaterialfv(GL_FRONT, GL_AMBIENT, ambientMat);
-		//glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuseMat);
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuseMat);
 		glMaterialfv(GL_FRONT, GL_SPECULAR, specularMat);
 		glMaterialf(GL_FRONT, GL_SHININESS, GLfloat(shiny));
 	}
@@ -90,6 +90,12 @@ void QViewport::resizeGL(int width, int height) {
 	glMatrixMode(GL_MODELVIEW);
 	glShadeModel(GL_SMOOTH);	//enables intensity reflected light at each polygon vertex and interpolates across polygon at each point
 	//glEnable(GL_NORMALIZE);	//needed to enable normals for surfaces for lights
+	//https://community.khronos.org/t/shininess/18327/10
+	//glEnable(GL_COLOR_MATERIAL);
+	//glColorMaterial(GL_FRONT, GL_SPECULAR);
+	//glEnable(GL_DEPTH_TEST);
+	//glEnable(GL_TEXTURE_2D);
+	
 	glEnable(GL_LIGHT0);
 	glEnable(GL_LIGHT1);
 	glEnable(GL_LIGHT2);
