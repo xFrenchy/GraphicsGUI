@@ -5,6 +5,10 @@ MyOwnQtPractice::MyOwnQtPractice(QWidget *parent)
     : QMainWindow(parent)
 {
     ui.setupUi(this);
+	int index = this->ui.viewport->lightSelected;
+	this->ui.xBox->setValue(this->ui.viewport->lightCoord[index].x);
+	this->ui.yBox->setValue(this->ui.viewport->lightCoord[index].y);
+	this->ui.zBox->setValue(this->ui.viewport->lightCoord[index].z);
 }
 
 void MyOwnQtPractice::xChangeLevel(int val) {
@@ -208,7 +212,8 @@ void MyOwnQtPractice::toggleEnableLight()
 void MyOwnQtPractice::selectLight(QString name)
 {
 	int number = (name.data()[name.size() - 1]).digitValue();
-	this->ui.viewport->lightSelected = number - 1;	//it's an index, not the number in the name
+	int index = number - 1;
+	this->ui.viewport->lightSelected = index;	//it's an index, not the number in the name
 	//update label for toggleLight and toggleDistance
 	QString text = "Enable Light(";
 	text.append(QString::number(number));
@@ -217,7 +222,28 @@ void MyOwnQtPractice::selectLight(QString name)
 	text = "Point Light(";
 	text.append(QString::number(number));
 	text.append(") = ");
-	text.append(QVariant(this->ui.viewport->isPointLight[number-1]).toString());
+	text.append(QVariant(this->ui.viewport->isPointLight[index]).toString());
 	this->ui.LightDistanceButton->setText(text);
+	//Now update light coordinates labels
+	this->ui.xBox->setValue(this->ui.viewport->lightCoord[index].x);
+	this->ui.yBox->setValue(this->ui.viewport->lightCoord[index].y);
+	this->ui.zBox->setValue(this->ui.viewport->lightCoord[index].z);
+	this->ui.viewport->update();
+}
+
+void MyOwnQtPractice::updateLightCoord(int val)
+{
+	QObject *pObject = sender();
+	QString name = pObject->objectName();
+	int index = this->ui.viewport->lightSelected;
+	if (name == "xBox") {
+		this->ui.viewport->lightCoord[index].x = val;
+	}
+	else if (name == "yBox") {
+		this->ui.viewport->lightCoord[index].y = val;
+	}
+	else if (name == "zBox") {
+		this->ui.viewport->lightCoord[index].z = val;
+	}
 	this->ui.viewport->update();
 }

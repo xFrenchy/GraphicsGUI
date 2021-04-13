@@ -24,6 +24,7 @@ public slots:
 	void toggleLightDistance();
 	void toggleEnableLight();
 	void selectLight(QString name);
+	void updateLightCoord(int val);
 
 private:
     Ui::MyOwnQtPracticeClass ui;
