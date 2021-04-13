@@ -115,13 +115,13 @@ void MyOwnQtPractice::updateAmbient(int val)
 	//val is between 0-99 so this makes it quite easy to map to 0.0-1.0
 	float new_val = (float)val/99.0;	//+1 to avoid division by 0, mapping it between 0.00-1.00
 	int index = this->ui.viewport->lightSelected;	//index value
-	if (name == "AmbR") {
+	if (name == "LightAmbR") {
 		this->ui.viewport->ambLight[index].r = new_val;
 	}
-	else if (name == "AmbG") {
+	else if (name == "LightAmbG") {
 		this->ui.viewport->ambLight[index].g = new_val;
 	}
-	else if (name == "AmbB") {
+	else if (name == "LightAmbB") {
 		this->ui.viewport->ambLight[index].b = new_val;
 	}
 	this->ui.viewport->update();
@@ -134,13 +134,13 @@ void MyOwnQtPractice::updateSpecular(int val)
 	//val is between 0-99 so this makes it quite easy to map to 0.0-1.0
 	float new_val = (float)val / 99.0;	//+1 to avoid division by 0, mapping it between 0.00-1.00
 	int index = this->ui.viewport->lightSelected;	//index value
-	if (name == "SpecR") {
+	if (name == "LightSpecR") {
 		this->ui.viewport->specLight[index].r = new_val;
 	}
-	else if (name == "SpecG") {
+	else if (name == "LightSpecG") {
 		this->ui.viewport->specLight[index].g = new_val;
 	}
-	else if (name == "SpecB") {
+	else if (name == "LightSpecB") {
 		this->ui.viewport->specLight[index].b = new_val;
 	}
 	this->ui.viewport->update();
@@ -153,13 +153,13 @@ void MyOwnQtPractice::updateDiffuse(int val)
 	//val is between 0-99 so this makes it quite easy to map to 0.0-1.0
 	float new_val = (float)val / 99.0;	//+1 to avoid division by 0, mapping it between 0.00-1.00
 	int index = this->ui.viewport->lightSelected;	//index value
-	if (name == "DiffR") {
+	if (name == "LightDiffR") {
 		this->ui.viewport->difLight[index].r = new_val;
 	}
-	else if (name == "DiffG") {
+	else if (name == "LightDiffG") {
 		this->ui.viewport->difLight[index].g = new_val;
 	}
-	else if (name == "DiffB") {
+	else if (name == "LightDiffB") {
 		this->ui.viewport->difLight[index].b = new_val;
 	}
 	this->ui.viewport->update();
