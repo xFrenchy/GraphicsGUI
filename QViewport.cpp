@@ -42,9 +42,9 @@ void QViewport::paintGL() {
 		switch (lightSelected) {
 
 		}
-		GLfloat ambient[] = { ambLight.r, ambLight.g, ambLight.b, ambLight.a };
-		GLfloat diffuse[] = { difLight.r, difLight.g, difLight.b, difLight.a };
-		GLfloat specular[] = { specLight.r, specLight.g, specLight.b, 1 - specLight.a };
+		GLfloat ambient[] = { ambLight[lightSelected].r, ambLight[lightSelected].g, ambLight[lightSelected].b, ambLight[lightSelected].a };
+		GLfloat diffuse[] = { difLight[lightSelected].r, difLight[lightSelected].g, difLight[lightSelected].b, difLight[lightSelected].a };
+		GLfloat specular[] = { specLight[lightSelected].r, specLight[lightSelected].g, specLight[lightSelected].b, 1 - specLight[lightSelected].a };
 		GLfloat position[] = { -22.0, 22.0, 22.0, (int)isPointLight[lightSelected] };	//0 value for the last argument means infinite distance away
 		glLightfv(GL_LIGHT0 + lightSelected, GL_POSITION, position);
 

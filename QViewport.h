@@ -76,9 +76,9 @@ public:
 	int lightSelected;
 	bool isPointLight[3];
 	bool isLightEnabled[3];
-	Ambient ambLight;
-	Diffuse difLight;
-	Specular specLight;
+	Ambient ambLight[3];
+	Diffuse difLight[3];
+	Specular specLight[3];
 	//Shiny shinyLight;
 
 private:
