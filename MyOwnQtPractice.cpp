@@ -110,14 +110,15 @@ void MyOwnQtPractice::updateAmbient(int val)
 	QString name = pObject->objectName();
 	//val is between 0-99 so this makes it quite easy to map to 0.0-1.0
 	float new_val = (float)val/99.0;	//+1 to avoid division by 0, mapping it between 0.00-1.00
+	int index = this->ui.viewport->lightSelected;	//index value
 	if (name == "AmbR") {
-		this->ui.viewport->ambLight.r = new_val;
+		this->ui.viewport->ambLight[index].r = new_val;
 	}
 	else if (name == "AmbG") {
-		this->ui.viewport->ambLight.g = new_val;
+		this->ui.viewport->ambLight[index].g = new_val;
 	}
 	else if (name == "AmbB") {
-		this->ui.viewport->ambLight.b = new_val;
+		this->ui.viewport->ambLight[index].b = new_val;
 	}
 	this->ui.viewport->update();
 }
@@ -128,14 +129,15 @@ void MyOwnQtPractice::updateSpecular(int val)
 	QString name = pObject->objectName();
 	//val is between 0-99 so this makes it quite easy to map to 0.0-1.0
 	float new_val = (float)val / 99.0;	//+1 to avoid division by 0, mapping it between 0.00-1.00
+	int index = this->ui.viewport->lightSelected;	//index value
 	if (name == "SpecR") {
-		this->ui.viewport->specLight.r = new_val;
+		this->ui.viewport->specLight[index].r = new_val;
 	}
 	else if (name == "SpecG") {
-		this->ui.viewport->specLight.g = new_val;
+		this->ui.viewport->specLight[index].g = new_val;
 	}
 	else if (name == "SpecB") {
-		this->ui.viewport->specLight.b = new_val;
+		this->ui.viewport->specLight[index].b = new_val;
 	}
 	this->ui.viewport->update();
 }
@@ -146,14 +148,15 @@ void MyOwnQtPractice::updateDiffuse(int val)
 	QString name = pObject->objectName();
 	//val is between 0-99 so this makes it quite easy to map to 0.0-1.0
 	float new_val = (float)val / 99.0;	//+1 to avoid division by 0, mapping it between 0.00-1.00
+	int index = this->ui.viewport->lightSelected;	//index value
 	if (name == "DiffR") {
-		this->ui.viewport->difLight.r = new_val;
+		this->ui.viewport->difLight[index].r = new_val;
 	}
 	else if (name == "DiffG") {
-		this->ui.viewport->difLight.g = new_val;
+		this->ui.viewport->difLight[index].g = new_val;
 	}
 	else if (name == "DiffB") {
-		this->ui.viewport->difLight.b = new_val;
+		this->ui.viewport->difLight[index].b = new_val;
 	}
 	this->ui.viewport->update();
 }
@@ -206,5 +209,15 @@ void MyOwnQtPractice::selectLight(QString name)
 {
 	int number = (name.data()[name.size() - 1]).digitValue();
 	this->ui.viewport->lightSelected = number - 1;	//it's an index, not the number in the name
+	//update label for toggleLight and toggleDistance
+	QString text = "Enable Light(";
+	text.append(QString::number(number));
+	text.append(")");
+	this->ui.EnableLightButton->setText(text);
+	text = "Point Light(";
+	text.append(QString::number(number));
+	text.append(") = ");
+	text.append(QVariant(this->ui.viewport->isPointLight[number-1]).toString());
+	this->ui.LightDistanceButton->setText(text);
 	this->ui.viewport->update();
 }
