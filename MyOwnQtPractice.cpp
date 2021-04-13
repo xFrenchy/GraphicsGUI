@@ -94,8 +94,9 @@ void MyOwnQtPractice::generateMeshFromFile(QString name)
 void MyOwnQtPractice::clear()
 {
 	this->ui.viewport->clear();
+	//Reset model name text
 	this->ui.ModelLabel->setText("Model Name: ");
-
+	//Reset point light text
 	int index = this->ui.viewport->lightSelected;	//index value
 	this->ui.viewport->isPointLight[index] = !(this->ui.viewport->isPointLight[index]);
 	QString text = "Point Light(";
@@ -103,6 +104,15 @@ void MyOwnQtPractice::clear()
 	text.append(") = ");
 	text.append(QVariant(this->ui.viewport->isPointLight[index]).toString());	//https://stackoverflow.com/questions/9604446/convert-bool-to-qstring
 	this->ui.LightDistanceButton->setText(text);
+	//Reset enabled/disabled text
+	text = "Enable Light(";
+	text.append(QString::number(index+1));
+	text.append(")");
+	this->ui.EnableLightButton->setText(text);
+	//Reset shiny value box
+	this->ui.ShinyBox->setValue(1);
+	//TODO:Reset camera position
+	//TODO:Reset dial position for light and material
 
 	this->ui.viewport->update();
 }
@@ -115,15 +125,34 @@ void MyOwnQtPractice::updateAmbient(int val)
 	//val is between 0-99 so this makes it quite easy to map to 0.0-1.0
 	float new_val = (float)val/99.0;	//+1 to avoid division by 0, mapping it between 0.00-1.00
 	int index = this->ui.viewport->lightSelected;	//index value
-	if (name == "LightAmbR") {
-		this->ui.viewport->ambLight[index].r = new_val;
+	//It's either light or material ambient. Look at the starting character and ending character to figure it out
+	QChar first = name.data()[0];
+	QChar last = name.data()[name.size() - 1];
+	if (first == 'L') {
+		//change stuff for light
+		if (last == 'R') {
+			this->ui.viewport->ambLight[index].r = new_val;
+		}
+		else if (last == 'G') {
+			this->ui.viewport->ambLight[index].g = new_val;
+		}
+		else if (last == 'B') {
+			this->ui.viewport->ambLight[index].b = new_val;
+		}
 	}
-	else if (name == "LightAmbG") {
-		this->ui.viewport->ambLight[index].g = new_val;
+	else if (first == 'M') {
+		//change stuff for material
+		if (last == 'R') {
+			this->ui.viewport->ambMat.r = new_val;
+		}
+		else if (last == 'G') {
+			this->ui.viewport->ambMat.g = new_val;
+		}
+		else if (last == 'B') {
+			this->ui.viewport->ambMat.b = new_val;
+		}
 	}
-	else if (name == "LightAmbB") {
-		this->ui.viewport->ambLight[index].b = new_val;
-	}
+	
 	this->ui.viewport->update();
 }
 
@@ -134,15 +163,31 @@ void MyOwnQtPractice::updateSpecular(int val)
 	//val is between 0-99 so this makes it quite easy to map to 0.0-1.0
 	float new_val = (float)val / 99.0;	//+1 to avoid division by 0, mapping it between 0.00-1.00
 	int index = this->ui.viewport->lightSelected;	//index value
-	if (name == "LightSpecR") {
-		this->ui.viewport->specLight[index].r = new_val;
+	QChar first = name.data()[0];
+	QChar last = name.data()[name.size() - 1];
+	if (first == 'L') {
+		if (last == 'R') {
+			this->ui.viewport->specLight[index].r = new_val;
+		}
+		else if (last == 'G') {
+			this->ui.viewport->specLight[index].g = new_val;
+		}
+		else if (last == 'B') {
+			this->ui.viewport->specLight[index].b = new_val;
+		}
 	}
-	else if (name == "LightSpecG") {
-		this->ui.viewport->specLight[index].g = new_val;
+	else if (first == 'M') {
+		if (last == 'R') {
+			this->ui.viewport->specMat.r = new_val;
+		}
+		else if (last == 'G') {
+			this->ui.viewport->specMat.g = new_val;
+		}
+		else if (last == 'B') {
+			this->ui.viewport->specMat.b = new_val;
+		}
 	}
-	else if (name == "LightSpecB") {
-		this->ui.viewport->specLight[index].b = new_val;
-	}
+	
 	this->ui.viewport->update();
 }
 
@@ -153,15 +198,31 @@ void MyOwnQtPractice::updateDiffuse(int val)
 	//val is between 0-99 so this makes it quite easy to map to 0.0-1.0
 	float new_val = (float)val / 99.0;	//+1 to avoid division by 0, mapping it between 0.00-1.00
 	int index = this->ui.viewport->lightSelected;	//index value
-	if (name == "LightDiffR") {
-		this->ui.viewport->difLight[index].r = new_val;
+	QChar first = name.data()[0];
+	QChar last = name.data()[name.size() - 1];
+	if (first == 'L') {
+		if (last == 'R') {
+			this->ui.viewport->difLight[index].r = new_val;
+		}
+		else if (last == 'G') {
+			this->ui.viewport->difLight[index].g = new_val;
+		}
+		else if (last == 'B') {
+			this->ui.viewport->difLight[index].b = new_val;
+		}
 	}
-	else if (name == "LightDiffG") {
-		this->ui.viewport->difLight[index].g = new_val;
+	else if (first == 'M') {
+		if (last == 'R') {
+			this->ui.viewport->difMat.r = new_val;
+		}
+		else if (last == 'G') {
+			this->ui.viewport->difMat.g = new_val;
+		}
+		else if (last == 'B') {
+			this->ui.viewport->difMat.b = new_val;
+		}
 	}
-	else if (name == "LightDiffB") {
-		this->ui.viewport->difLight[index].b = new_val;
-	}
+	
 	this->ui.viewport->update();
 }
 
@@ -215,7 +276,11 @@ void MyOwnQtPractice::selectLight(QString name)
 	int index = number - 1;
 	this->ui.viewport->lightSelected = index;	//it's an index, not the number in the name
 	//update label for toggleLight and toggleDistance
-	QString text = "Enable Light(";
+	QString text;
+	if (this->ui.viewport->isLightEnabled[index])
+		text = "Disable Light(";
+	else
+		text = "Enable Light(";
 	text.append(QString::number(number));
 	text.append(")");
 	this->ui.EnableLightButton->setText(text);
@@ -245,5 +310,11 @@ void MyOwnQtPractice::updateLightCoord(int val)
 	else if (name == "zBox") {
 		this->ui.viewport->lightCoord[index].z = val;
 	}
+	this->ui.viewport->update();
+}
+
+void MyOwnQtPractice::updateShiny(int val)
+{
+	this->ui.viewport->shiny = val;
 	this->ui.viewport->update();
 }
