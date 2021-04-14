@@ -42,7 +42,7 @@ void QViewport::paintGL() {
 
 	glPushMatrix();
 	//gluLookAt(GLfloat(xSlider), GLfloat(ySlider), GLfloat(zSlider), 0.0f, 0.0f, 0.0f, 0.0f, cos(ySlider*0.001), 0.0f);
-	gluLookAt(0, 0, -200, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+	gluLookAt(xZoom, yZoom, zZoom, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 	glRotatef(GLfloat(xSlider), 1, 0, 0);
 	glRotatef(GLfloat(ySlider), 0, 1, 0);
 	glRotatef(GLfloat(zSlider), 0, 0, 1);
