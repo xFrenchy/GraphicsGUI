@@ -16,19 +16,16 @@ MyOwnQtPractice::MyOwnQtPractice(QWidget *parent)
 }
 
 void MyOwnQtPractice::xChangeLevel(int val) {
-	std::cout << "value changed: " << val << std::endl;
 	this->ui.viewport->xSlider = val;
 	this->ui.viewport->update();
 }
 
 void MyOwnQtPractice::yChangeLevel(int val) {
-	std::cout << "value changed: " << val << std::endl;
 	this->ui.viewport->ySlider = val;
 	this->ui.viewport->update();
 }
 
 void MyOwnQtPractice::zChangeLevel(int val) {
-	std::cout << "value changed: " << val << std::endl;
 	this->ui.viewport->zSlider = val;
 	this->ui.viewport->update();
 }
@@ -321,5 +318,21 @@ void MyOwnQtPractice::updateLightCoord(int val)
 void MyOwnQtPractice::updateShiny(int val)
 {
 	this->ui.viewport->shiny = val;
+	this->ui.viewport->update();
+}
+
+void MyOwnQtPractice::updateCamCoord(int val)
+{
+	QObject *pObject = sender();
+	QString name = pObject->objectName();
+	if (name.data()[0] == 'x') {
+		this->ui.viewport->xZoom = val;
+	}
+	else if (name.data()[0] == 'y') {
+		this->ui.viewport->yZoom = val;
+	}
+	else if (name.data()[0] == 'z') {
+		this->ui.viewport->zZoom = val;
+	}
 	this->ui.viewport->update();
 }
