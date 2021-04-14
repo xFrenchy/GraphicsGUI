@@ -6,9 +6,13 @@ MyOwnQtPractice::MyOwnQtPractice(QWidget *parent)
 {
     ui.setupUi(this);
 	int index = this->ui.viewport->lightSelected;
-	this->ui.xBox->setValue(this->ui.viewport->lightCoord[index].x);
-	this->ui.yBox->setValue(this->ui.viewport->lightCoord[index].y);
-	this->ui.zBox->setValue(this->ui.viewport->lightCoord[index].z);
+	this->ui.xBoxLight->setValue(this->ui.viewport->lightCoord[index].x);
+	this->ui.yBoxLight->setValue(this->ui.viewport->lightCoord[index].y);
+	this->ui.zBoxLight->setValue(this->ui.viewport->lightCoord[index].z);
+
+	this->ui.xBoxCam->setValue(this->ui.viewport->xZoom);
+	this->ui.yBoxCam->setValue(this->ui.viewport->yZoom);
+	this->ui.zBoxCam->setValue(this->ui.viewport->zZoom);
 }
 
 void MyOwnQtPractice::xChangeLevel(int val) {
@@ -113,6 +117,7 @@ void MyOwnQtPractice::clear()
 	this->ui.ShinyBox->setValue(1);
 	//TODO:Reset camera position
 	//TODO:Reset dial position for light and material
+	//TODO:Reset camera zoom label text
 
 	this->ui.viewport->update();
 }
@@ -290,9 +295,9 @@ void MyOwnQtPractice::selectLight(QString name)
 	text.append(QVariant(this->ui.viewport->isPointLight[index]).toString());
 	this->ui.LightDistanceButton->setText(text);
 	//Now update light coordinates labels
-	this->ui.xBox->setValue(this->ui.viewport->lightCoord[index].x);
-	this->ui.yBox->setValue(this->ui.viewport->lightCoord[index].y);
-	this->ui.zBox->setValue(this->ui.viewport->lightCoord[index].z);
+	this->ui.xBoxLight->setValue(this->ui.viewport->lightCoord[index].x);
+	this->ui.yBoxLight->setValue(this->ui.viewport->lightCoord[index].y);
+	this->ui.zBoxLight->setValue(this->ui.viewport->lightCoord[index].z);
 	this->ui.viewport->update();
 }
 
@@ -301,13 +306,13 @@ void MyOwnQtPractice::updateLightCoord(int val)
 	QObject *pObject = sender();
 	QString name = pObject->objectName();
 	int index = this->ui.viewport->lightSelected;
-	if (name == "xBox") {
+	if (name == "xBoxLight") {
 		this->ui.viewport->lightCoord[index].x = val;
 	}
-	else if (name == "yBox") {
+	else if (name == "yBoxLight") {
 		this->ui.viewport->lightCoord[index].y = val;
 	}
-	else if (name == "zBox") {
+	else if (name == "zBoxLight") {
 		this->ui.viewport->lightCoord[index].z = val;
 	}
 	this->ui.viewport->update();
