@@ -12,6 +12,9 @@ QViewport::QViewport(QWidget *parent) {
 	this->zSlider = 0;
 	this->vertices_qty = 0;
 	this->polygons_qty = 0;
+	this->xZoom = 0;
+	this->yZoom = 0;
+	this->zZoom = -200;
 	this->shiny = 1;
 	this->modelName = "";
 	this->isRendered = false;
@@ -38,9 +41,11 @@ void QViewport::paintGL() {
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glPushMatrix();
-	//gluLookAt(GLfloat(xSlider), GLfloat(ySlider), GLfloat(zSlider), 0.0f, 0.0f, 0.0f, 0.0f, cos(ySlider), 0.0f);
-	gluLookAt(GLfloat(xSlider), GLfloat(ySlider), GLfloat(zSlider), 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
-	//gluLookAt(0.0f, 0.0f, 0.0f, GLfloat(xSlider), GLfloat(ySlider), GLfloat(zSlider), 0.0f, 1.0f, 0.0f); //<--I can kind of see a cup with this
+	//gluLookAt(GLfloat(xSlider), GLfloat(ySlider), GLfloat(zSlider), 0.0f, 0.0f, 0.0f, 0.0f, cos(ySlider*0.001), 0.0f);
+	gluLookAt(0, 0, -200, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
+	glRotatef(GLfloat(xSlider), 1, 0, 0);
+	glRotatef(GLfloat(ySlider), 0, 1, 0);
+	glRotatef(GLfloat(zSlider), 0, 0, 1);
 	glBindTexture(GL_TEXTURE_2D, 1);
 
 	if (isLightEnabled[lightSelected]) {
@@ -86,7 +91,7 @@ void QViewport::resizeGL(int width, int height) {
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
 	//gluPerspective(150.0, float(width) / float(height), 0.01, 300.0f);	<--- much better perspective for cup and spoon
-	gluPerspective(65.0, float(width) / float(height), 0.01, 300.0f);
+	gluPerspective(65.0, float(width) / float(height), 0.01, 500.0f);
 	glMatrixMode(GL_MODELVIEW);
 	glShadeModel(GL_SMOOTH);	//enables intensity reflected light at each polygon vertex and interpolates across polygon at each point
 	//glEnable(GL_NORMALIZE);	//needed to enable normals for surfaces for lights
@@ -94,7 +99,6 @@ void QViewport::resizeGL(int width, int height) {
 	//glEnable(GL_COLOR_MATERIAL);
 	//glColorMaterial(GL_FRONT, GL_SPECULAR);
 	//glEnable(GL_DEPTH_TEST);
-	//glEnable(GL_TEXTURE_2D);
 	
 	glEnable(GL_LIGHT0);
 	glEnable(GL_LIGHT1);
@@ -193,6 +197,9 @@ void QViewport::clear()
 {
 	this->vertices_qty = 0;
 	this->polygons_qty = 0;
+	this->xZoom = 0;
+	this->yZoom = 0;
+	this->zZoom = -200;
 	this->modelName = "";
 	this->isRendered = false;
 	this->shiny = 1;

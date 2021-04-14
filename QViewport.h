@@ -67,6 +67,8 @@ public:
 	int ySlider;
 	int zSlider;
 
+	int xZoom, yZoom, zZoom;
+
 	//---Model vertices, polygon, and mapping below
 	string modelName;
 	int vertices_qty;
