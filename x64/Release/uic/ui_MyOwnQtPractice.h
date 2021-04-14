@@ -258,6 +258,7 @@ public:
         xBoxLight->setGeometry(QRect(180, 180, 40, 16));
         xBoxLight->setMinimum(-50);
         xBoxLight->setMaximum(50);
+        xBoxLight->setSingleStep(5);
         xBoxLight->setValue(0);
         label_15 = new QLabel(widget);
         label_15->setObjectName(QString::fromUtf8("label_15"));
@@ -267,6 +268,7 @@ public:
         yBoxLight->setGeometry(QRect(233, 180, 40, 16));
         yBoxLight->setMinimum(-50);
         yBoxLight->setMaximum(50);
+        yBoxLight->setSingleStep(5);
         label_16 = new QLabel(widget);
         label_16->setObjectName(QString::fromUtf8("label_16"));
         label_16->setGeometry(QRect(276, 180, 47, 13));
@@ -275,6 +277,7 @@ public:
         zBoxLight->setGeometry(QRect(285, 180, 40, 16));
         zBoxLight->setMinimum(-50);
         zBoxLight->setMaximum(50);
+        zBoxLight->setSingleStep(5);
         label_17 = new QLabel(widget);
         label_17->setObjectName(QString::fromUtf8("label_17"));
         label_17->setGeometry(QRect(0, 200, 321, 16));
@@ -356,8 +359,9 @@ public:
         xBoxCam = new QSpinBox(widget);
         xBoxCam->setObjectName(QString::fromUtf8("xBoxCam"));
         xBoxCam->setGeometry(QRect(170, 59, 40, 16));
-        xBoxCam->setMinimum(-50);
-        xBoxCam->setMaximum(50);
+        xBoxCam->setMinimum(-500);
+        xBoxCam->setMaximum(500);
+        xBoxCam->setSingleStep(20);
         xBoxCam->setValue(0);
         label_31 = new QLabel(widget);
         label_31->setObjectName(QString::fromUtf8("label_31"));
@@ -368,14 +372,16 @@ public:
         yBoxCam = new QSpinBox(widget);
         yBoxCam->setObjectName(QString::fromUtf8("yBoxCam"));
         yBoxCam->setGeometry(QRect(220, 59, 40, 16));
-        yBoxCam->setMinimum(-50);
-        yBoxCam->setMaximum(50);
+        yBoxCam->setMinimum(-500);
+        yBoxCam->setMaximum(500);
+        yBoxCam->setSingleStep(20);
         yBoxCam->setValue(0);
         zBoxCam = new QSpinBox(widget);
         zBoxCam->setObjectName(QString::fromUtf8("zBoxCam"));
         zBoxCam->setGeometry(QRect(270, 59, 40, 16));
-        zBoxCam->setMinimum(-50);
-        zBoxCam->setMaximum(50);
+        zBoxCam->setMinimum(-500);
+        zBoxCam->setMaximum(500);
+        zBoxCam->setSingleStep(20);
         zBoxCam->setValue(0);
         label_33 = new QLabel(widget);
         label_33->setObjectName(QString::fromUtf8("label_33"));
@@ -499,6 +505,9 @@ public:
         QObject::connect(MatSpecR, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateSpecular(int)));
         QObject::connect(MatSpecG, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateSpecular(int)));
         QObject::connect(MatSpecB, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateSpecular(int)));
+        QObject::connect(xBoxCam, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateCamCoord(int)));
+        QObject::connect(yBoxCam, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateCamCoord(int)));
+        QObject::connect(zBoxCam, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateCamCoord(int)));
 
         QMetaObject::connectSlotsByName(MyOwnQtPracticeClass);
     } // setupUi
