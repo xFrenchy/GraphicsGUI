@@ -1,3 +1,4 @@
-﻿  QViewport.cpp
-c:\users\frenchy\desktop\spring 2021\graphics\final\myownqtpractice\myownqtpractice\qviewport.cpp(51): warning C4838: conversion from 'int' to 'GLfloat' requires a narrowing conversion
+﻿  MyOwnQtPractice.cpp
+  main.cpp
+  moc_MyOwnQtPractice.cpp
   MyOwnQtPractice.vcxproj -> C:\Users\Frenchy\Desktop\Spring 2021\Graphics\Final\MyOwnQtPractice\x64\Debug\MyOwnQtPractice.exe

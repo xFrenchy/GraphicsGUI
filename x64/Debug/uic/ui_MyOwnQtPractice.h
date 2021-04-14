@@ -14,7 +14,6 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDial>
 #include <QtWidgets/QGridLayout>
-#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
@@ -35,8 +34,6 @@ public:
     QGridLayout *gridLayout;
     QViewport *viewport;
     QWidget *widget;
-    QWidget *layoutWidget;
-    QHBoxLayout *horizontalLayout;
     QPushButton *OooWhee;
     QLabel *label_2;
     QSlider *ySlider;
@@ -70,11 +67,11 @@ public:
     QComboBox *LightPicker;
     QPushButton *EnableLightButton;
     QLabel *label_14;
-    QSpinBox *xBox;
+    QSpinBox *xBoxLight;
     QLabel *label_15;
-    QSpinBox *yBox;
+    QSpinBox *yBoxLight;
     QLabel *label_16;
-    QSpinBox *zBox;
+    QSpinBox *zBoxLight;
     QLabel *label_17;
     QLabel *label_18;
     QLabel *label_19;
@@ -97,6 +94,15 @@ public:
     QDial *MatSpecB;
     QLabel *label_28;
     QSpinBox *ShinyBox;
+    QLabel *label_29;
+    QLabel *label_30;
+    QSpinBox *xBoxCam;
+    QLabel *label_31;
+    QLabel *label_32;
+    QSpinBox *yBoxCam;
+    QSpinBox *zBoxCam;
+    QLabel *label_33;
+    QLabel *label_34;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -120,23 +126,15 @@ public:
 
         widget = new QWidget(centralWidget);
         widget->setObjectName(QString::fromUtf8("widget"));
-        layoutWidget = new QWidget(widget);
-        layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(50, 10, 142, 24));
-        horizontalLayout = new QHBoxLayout(layoutWidget);
-        horizontalLayout->setSpacing(6);
-        horizontalLayout->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
         OooWhee = new QPushButton(widget);
         OooWhee->setObjectName(QString::fromUtf8("OooWhee"));
         OooWhee->setGeometry(QRect(30, 340, 75, 23));
         label_2 = new QLabel(widget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(4, 30, 50, 22));
+        label_2->setGeometry(QRect(4, 40, 50, 22));
         ySlider = new QSlider(widget);
         ySlider->setObjectName(QString::fromUtf8("ySlider"));
-        ySlider->setGeometry(QRect(60, 30, 84, 22));
+        ySlider->setGeometry(QRect(60, 40, 84, 22));
         ySlider->setMinimum(-300);
         ySlider->setMaximum(300);
         ySlider->setValue(0);
@@ -159,14 +157,14 @@ public:
         ModelLabel->setGeometry(QRect(196, 0, 131, 20));
         xSlider = new QSlider(widget);
         xSlider->setObjectName(QString::fromUtf8("xSlider"));
-        xSlider->setGeometry(QRect(60, 0, 84, 22));
+        xSlider->setGeometry(QRect(60, 20, 84, 22));
         xSlider->setMinimum(-300);
         xSlider->setMaximum(300);
         xSlider->setValue(0);
         xSlider->setOrientation(Qt::Horizontal);
         label = new QLabel(widget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(4, 0, 50, 22));
+        label->setGeometry(QRect(4, 20, 50, 22));
         ModelPicker = new QComboBox(widget);
         ModelPicker->addItem(QString());
         ModelPicker->addItem(QString());
@@ -254,29 +252,29 @@ public:
         EnableLightButton->setGeometry(QRect(220, 110, 101, 31));
         label_14 = new QLabel(widget);
         label_14->setObjectName(QString::fromUtf8("label_14"));
-        label_14->setGeometry(QRect(130, 180, 47, 13));
-        xBox = new QSpinBox(widget);
-        xBox->setObjectName(QString::fromUtf8("xBox"));
-        xBox->setGeometry(QRect(180, 180, 40, 16));
-        xBox->setMinimum(-50);
-        xBox->setMaximum(50);
-        xBox->setValue(0);
+        label_14->setGeometry(QRect(170, 180, 20, 16));
+        xBoxLight = new QSpinBox(widget);
+        xBoxLight->setObjectName(QString::fromUtf8("xBoxLight"));
+        xBoxLight->setGeometry(QRect(180, 180, 40, 16));
+        xBoxLight->setMinimum(-50);
+        xBoxLight->setMaximum(50);
+        xBoxLight->setValue(0);
         label_15 = new QLabel(widget);
         label_15->setObjectName(QString::fromUtf8("label_15"));
         label_15->setGeometry(QRect(225, 180, 47, 13));
-        yBox = new QSpinBox(widget);
-        yBox->setObjectName(QString::fromUtf8("yBox"));
-        yBox->setGeometry(QRect(233, 180, 40, 16));
-        yBox->setMinimum(-50);
-        yBox->setMaximum(50);
+        yBoxLight = new QSpinBox(widget);
+        yBoxLight->setObjectName(QString::fromUtf8("yBoxLight"));
+        yBoxLight->setGeometry(QRect(233, 180, 40, 16));
+        yBoxLight->setMinimum(-50);
+        yBoxLight->setMaximum(50);
         label_16 = new QLabel(widget);
         label_16->setObjectName(QString::fromUtf8("label_16"));
         label_16->setGeometry(QRect(276, 180, 47, 13));
-        zBox = new QSpinBox(widget);
-        zBox->setObjectName(QString::fromUtf8("zBox"));
-        zBox->setGeometry(QRect(285, 180, 40, 16));
-        zBox->setMinimum(-50);
-        zBox->setMaximum(50);
+        zBoxLight = new QSpinBox(widget);
+        zBoxLight->setObjectName(QString::fromUtf8("zBoxLight"));
+        zBoxLight->setGeometry(QRect(285, 180, 40, 16));
+        zBoxLight->setMinimum(-50);
+        zBoxLight->setMaximum(50);
         label_17 = new QLabel(widget);
         label_17->setObjectName(QString::fromUtf8("label_17"));
         label_17->setGeometry(QRect(0, 200, 321, 16));
@@ -349,7 +347,42 @@ public:
         ShinyBox->setMinimum(1);
         ShinyBox->setMaximum(128);
         ShinyBox->setValue(1);
-        layoutWidget->raise();
+        label_29 = new QLabel(widget);
+        label_29->setObjectName(QString::fromUtf8("label_29"));
+        label_29->setGeometry(QRect(40, 0, 71, 16));
+        label_30 = new QLabel(widget);
+        label_30->setObjectName(QString::fromUtf8("label_30"));
+        label_30->setGeometry(QRect(150, 40, 91, 16));
+        xBoxCam = new QSpinBox(widget);
+        xBoxCam->setObjectName(QString::fromUtf8("xBoxCam"));
+        xBoxCam->setGeometry(QRect(170, 59, 40, 16));
+        xBoxCam->setMinimum(-50);
+        xBoxCam->setMaximum(50);
+        xBoxCam->setValue(0);
+        label_31 = new QLabel(widget);
+        label_31->setObjectName(QString::fromUtf8("label_31"));
+        label_31->setGeometry(QRect(160, 60, 47, 13));
+        label_32 = new QLabel(widget);
+        label_32->setObjectName(QString::fromUtf8("label_32"));
+        label_32->setGeometry(QRect(213, 61, 47, 13));
+        yBoxCam = new QSpinBox(widget);
+        yBoxCam->setObjectName(QString::fromUtf8("yBoxCam"));
+        yBoxCam->setGeometry(QRect(220, 59, 40, 16));
+        yBoxCam->setMinimum(-50);
+        yBoxCam->setMaximum(50);
+        yBoxCam->setValue(0);
+        zBoxCam = new QSpinBox(widget);
+        zBoxCam->setObjectName(QString::fromUtf8("zBoxCam"));
+        zBoxCam->setGeometry(QRect(270, 59, 40, 16));
+        zBoxCam->setMinimum(-50);
+        zBoxCam->setMaximum(50);
+        zBoxCam->setValue(0);
+        label_33 = new QLabel(widget);
+        label_33->setObjectName(QString::fromUtf8("label_33"));
+        label_33->setGeometry(QRect(263, 60, 47, 13));
+        label_34 = new QLabel(widget);
+        label_34->setObjectName(QString::fromUtf8("label_34"));
+        label_34->setGeometry(QRect(156, 161, 71, 16));
         OooWhee->raise();
         label_2->raise();
         ySlider->raise();
@@ -385,9 +418,9 @@ public:
         label_14->raise();
         label_15->raise();
         label_16->raise();
-        xBox->raise();
-        yBox->raise();
-        zBox->raise();
+        xBoxLight->raise();
+        yBoxLight->raise();
+        zBoxLight->raise();
         label_17->raise();
         label_18->raise();
         label_19->raise();
@@ -410,6 +443,15 @@ public:
         MatSpecB->raise();
         label_28->raise();
         ShinyBox->raise();
+        label_29->raise();
+        label_30->raise();
+        label_31->raise();
+        xBoxCam->raise();
+        label_32->raise();
+        yBoxCam->raise();
+        label_33->raise();
+        zBoxCam->raise();
+        label_34->raise();
 
         gridLayout->addWidget(widget, 0, 0, 1, 1);
 
@@ -444,9 +486,9 @@ public:
         QObject::connect(LightDistanceButton, SIGNAL(pressed()), MyOwnQtPracticeClass, SLOT(toggleLightDistance()));
         QObject::connect(EnableLightButton, SIGNAL(pressed()), MyOwnQtPracticeClass, SLOT(toggleEnableLight()));
         QObject::connect(LightPicker, SIGNAL(activated(QString)), MyOwnQtPracticeClass, SLOT(selectLight(QString)));
-        QObject::connect(xBox, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateLightCoord(int)));
-        QObject::connect(yBox, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateLightCoord(int)));
-        QObject::connect(zBox, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateLightCoord(int)));
+        QObject::connect(xBoxLight, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateLightCoord(int)));
+        QObject::connect(yBoxLight, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateLightCoord(int)));
+        QObject::connect(zBoxLight, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateLightCoord(int)));
         QObject::connect(MatAmbR, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateAmbient(int)));
         QObject::connect(MatAmbG, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateAmbient(int)));
         QObject::connect(MatDiffB, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateDiffuse(int)));
@@ -498,7 +540,7 @@ public:
         LightPicker->setItemText(2, QApplication::translate("MyOwnQtPracticeClass", "Light3", nullptr));
 
         EnableLightButton->setText(QApplication::translate("MyOwnQtPracticeClass", "Enable Light(1)", nullptr));
-        label_14->setText(QApplication::translate("MyOwnQtPracticeClass", "Position X", nullptr));
+        label_14->setText(QApplication::translate("MyOwnQtPracticeClass", "X", nullptr));
         label_15->setText(QApplication::translate("MyOwnQtPracticeClass", "Y", nullptr));
         label_16->setText(QApplication::translate("MyOwnQtPracticeClass", "Z", nullptr));
         label_17->setText(QApplication::translate("MyOwnQtPracticeClass", "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -", nullptr));
@@ -513,6 +555,12 @@ public:
         label_26->setText(QApplication::translate("MyOwnQtPracticeClass", "Specular R", nullptr));
         label_27->setText(QApplication::translate("MyOwnQtPracticeClass", "B        ", nullptr));
         label_28->setText(QApplication::translate("MyOwnQtPracticeClass", "Shininess", nullptr));
+        label_29->setText(QApplication::translate("MyOwnQtPracticeClass", "Model Position", nullptr));
+        label_30->setText(QApplication::translate("MyOwnQtPracticeClass", "Camera Position", nullptr));
+        label_31->setText(QApplication::translate("MyOwnQtPracticeClass", "X", nullptr));
+        label_32->setText(QApplication::translate("MyOwnQtPracticeClass", "Y", nullptr));
+        label_33->setText(QApplication::translate("MyOwnQtPracticeClass", "Z", nullptr));
+        label_34->setText(QApplication::translate("MyOwnQtPracticeClass", "Light Position", nullptr));
     } // retranslateUi
 
 };
