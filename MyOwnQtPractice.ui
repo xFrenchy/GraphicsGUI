@@ -24,17 +24,6 @@
     </item>
     <item row="0" column="0">
      <widget class="QWidget" name="widget" native="true">
-      <widget class="QWidget" name="layoutWidget">
-       <property name="geometry">
-        <rect>
-         <x>50</x>
-         <y>10</y>
-         <width>142</width>
-         <height>24</height>
-        </rect>
-       </property>
-       <layout class="QHBoxLayout" name="horizontalLayout"/>
-      </widget>
       <widget class="QPushButton" name="OooWhee">
        <property name="geometry">
         <rect>
@@ -52,7 +41,7 @@
        <property name="geometry">
         <rect>
          <x>4</x>
-         <y>30</y>
+         <y>40</y>
          <width>50</width>
          <height>22</height>
         </rect>
@@ -65,7 +54,7 @@
        <property name="geometry">
         <rect>
          <x>60</x>
-         <y>30</y>
+         <y>40</y>
          <width>84</width>
          <height>22</height>
         </rect>
@@ -148,7 +137,7 @@
        <property name="geometry">
         <rect>
          <x>60</x>
-         <y>0</y>
+         <y>20</y>
          <width>84</width>
          <height>22</height>
         </rect>
@@ -170,7 +159,7 @@
        <property name="geometry">
         <rect>
          <x>4</x>
-         <y>0</y>
+         <y>20</y>
          <width>50</width>
          <height>22</height>
         </rect>
@@ -521,17 +510,17 @@
       <widget class="QLabel" name="label_14">
        <property name="geometry">
         <rect>
-         <x>130</x>
+         <x>170</x>
          <y>180</y>
-         <width>47</width>
-         <height>13</height>
+         <width>20</width>
+         <height>16</height>
         </rect>
        </property>
        <property name="text">
-        <string>Position X</string>
+        <string>X</string>
        </property>
       </widget>
-      <widget class="QSpinBox" name="xBox">
+      <widget class="QSpinBox" name="xBoxLight">
        <property name="geometry">
         <rect>
          <x>180</x>
@@ -563,7 +552,7 @@
         <string>Y</string>
        </property>
       </widget>
-      <widget class="QSpinBox" name="yBox">
+      <widget class="QSpinBox" name="yBoxLight">
        <property name="geometry">
         <rect>
          <x>233</x>
@@ -592,7 +581,7 @@
         <string>Z</string>
        </property>
       </widget>
-      <widget class="QSpinBox" name="zBox">
+      <widget class="QSpinBox" name="zBoxLight">
        <property name="geometry">
         <rect>
          <x>285</x>
@@ -878,7 +867,141 @@
         <number>1</number>
        </property>
       </widget>
-      <zorder>layoutWidget</zorder>
+      <widget class="QLabel" name="label_29">
+       <property name="geometry">
+        <rect>
+         <x>40</x>
+         <y>0</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Model Position</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_30">
+       <property name="geometry">
+        <rect>
+         <x>150</x>
+         <y>40</y>
+         <width>91</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Camera Position</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="xBoxCam">
+       <property name="geometry">
+        <rect>
+         <x>170</x>
+         <y>59</y>
+         <width>40</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>-50</number>
+       </property>
+       <property name="maximum">
+        <number>50</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_31">
+       <property name="geometry">
+        <rect>
+         <x>160</x>
+         <y>60</y>
+         <width>47</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>X</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_32">
+       <property name="geometry">
+        <rect>
+         <x>213</x>
+         <y>61</y>
+         <width>47</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Y</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="yBoxCam">
+       <property name="geometry">
+        <rect>
+         <x>220</x>
+         <y>59</y>
+         <width>40</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>-50</number>
+       </property>
+       <property name="maximum">
+        <number>50</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="zBoxCam">
+       <property name="geometry">
+        <rect>
+         <x>270</x>
+         <y>59</y>
+         <width>40</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>-50</number>
+       </property>
+       <property name="maximum">
+        <number>50</number>
+       </property>
+       <property name="value">
+        <number>0</number>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_33">
+       <property name="geometry">
+        <rect>
+         <x>263</x>
+         <y>60</y>
+         <width>47</width>
+         <height>13</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Z</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_34">
+       <property name="geometry">
+        <rect>
+         <x>156</x>
+         <y>161</y>
+         <width>71</width>
+         <height>16</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Light Position</string>
+       </property>
+      </widget>
       <zorder>OooWhee</zorder>
       <zorder>label_2</zorder>
       <zorder>ySlider</zorder>
@@ -914,9 +1037,9 @@
       <zorder>label_14</zorder>
       <zorder>label_15</zorder>
       <zorder>label_16</zorder>
-      <zorder>xBox</zorder>
-      <zorder>yBox</zorder>
-      <zorder>zBox</zorder>
+      <zorder>xBoxLight</zorder>
+      <zorder>yBoxLight</zorder>
+      <zorder>zBoxLight</zorder>
       <zorder>label_17</zorder>
       <zorder>label_18</zorder>
       <zorder>label_19</zorder>
@@ -939,6 +1062,15 @@
       <zorder>MatSpecB</zorder>
       <zorder>label_28</zorder>
       <zorder>ShinyBox</zorder>
+      <zorder>label_29</zorder>
+      <zorder>label_30</zorder>
+      <zorder>label_31</zorder>
+      <zorder>xBoxCam</zorder>
+      <zorder>label_32</zorder>
+      <zorder>yBoxCam</zorder>
+      <zorder>label_33</zorder>
+      <zorder>zBoxCam</zorder>
+      <zorder>label_34</zorder>
      </widget>
     </item>
    </layout>
@@ -1265,7 +1397,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>xBox</sender>
+   <sender>xBoxLight</sender>
    <signal>valueChanged(int)</signal>
    <receiver>MyOwnQtPracticeClass</receiver>
    <slot>updateLightCoord(int)</slot>
@@ -1281,7 +1413,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>yBox</sender>
+   <sender>yBoxLight</sender>
    <signal>valueChanged(int)</signal>
    <receiver>MyOwnQtPracticeClass</receiver>
    <slot>updateLightCoord(int)</slot>
@@ -1297,7 +1429,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>zBox</sender>
+   <sender>zBoxLight</sender>
    <signal>valueChanged(int)</signal>
    <receiver>MyOwnQtPracticeClass</receiver>
    <slot>updateLightCoord(int)</slot>
