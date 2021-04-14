@@ -535,6 +535,9 @@
        <property name="maximum">
         <number>50</number>
        </property>
+       <property name="singleStep">
+        <number>5</number>
+       </property>
        <property name="value">
         <number>0</number>
        </property>
@@ -567,6 +570,9 @@
        <property name="maximum">
         <number>50</number>
        </property>
+       <property name="singleStep">
+        <number>5</number>
+       </property>
       </widget>
       <widget class="QLabel" name="label_16">
        <property name="geometry">
@@ -595,6 +601,9 @@
        </property>
        <property name="maximum">
         <number>50</number>
+       </property>
+       <property name="singleStep">
+        <number>5</number>
        </property>
       </widget>
       <widget class="QLabel" name="label_17">
@@ -903,10 +912,13 @@
         </rect>
        </property>
        <property name="minimum">
-        <number>-50</number>
+        <number>-500</number>
        </property>
        <property name="maximum">
-        <number>50</number>
+        <number>500</number>
+       </property>
+       <property name="singleStep">
+        <number>20</number>
        </property>
        <property name="value">
         <number>0</number>
@@ -948,10 +960,13 @@
         </rect>
        </property>
        <property name="minimum">
-        <number>-50</number>
+        <number>-500</number>
        </property>
        <property name="maximum">
-        <number>50</number>
+        <number>500</number>
+       </property>
+       <property name="singleStep">
+        <number>20</number>
        </property>
        <property name="value">
         <number>0</number>
@@ -967,10 +982,13 @@
         </rect>
        </property>
        <property name="minimum">
-        <number>-50</number>
+        <number>-500</number>
        </property>
        <property name="maximum">
-        <number>50</number>
+        <number>500</number>
+       </property>
+       <property name="singleStep">
+        <number>20</number>
        </property>
        <property name="value">
         <number>0</number>
@@ -1604,6 +1622,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>xBoxCam</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MyOwnQtPracticeClass</receiver>
+   <slot>updateCamCoord(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>198</x>
+     <y>108</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>yBoxCam</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MyOwnQtPracticeClass</receiver>
+   <slot>updateCamCoord(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>108</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>zBoxCam</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>MyOwnQtPracticeClass</receiver>
+   <slot>updateCamCoord(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>298</x>
+     <y>108</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>232</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>xChangeLevel(int)</slot>
@@ -1620,5 +1686,6 @@
   <slot>selectLight(QString)</slot>
   <slot>updateLightCoord(int)</slot>
   <slot>updateShiny(int)</slot>
+  <slot>updateCamCoord(int)</slot>
  </slots>
 </ui>
