@@ -48,26 +48,32 @@ void QViewport::paintGL() {
 	glRotatef(GLfloat(zSlider), 0, 0, 1);
 	glBindTexture(GL_TEXTURE_2D, 1);
 
-	if (isLightEnabled[lightSelected]) {
-		GLfloat ambientLight[] = { ambLight[lightSelected].r, ambLight[lightSelected].g, ambLight[lightSelected].b, ambLight[lightSelected].a };
-		GLfloat diffuseLight[] = { difLight[lightSelected].r, difLight[lightSelected].g, difLight[lightSelected].b, difLight[lightSelected].a };
-		GLfloat specularLight[] = { specLight[lightSelected].r, specLight[lightSelected].g, specLight[lightSelected].b, specLight[lightSelected].a };
+	for (int i = 0; i < 3; ++i) {
+		if (isLightEnabled[i]) {
+			glEnable(GL_LIGHT0 + i);
+			GLfloat ambientLight[] = { ambLight[i].r, ambLight[i].g, ambLight[i].b, ambLight[i].a };
+			GLfloat diffuseLight[] = { difLight[i].r, difLight[i].g, difLight[i].b, difLight[i].a };
+			GLfloat specularLight[] = { specLight[i].r, specLight[i].g, specLight[i].b, specLight[i].a };
 
-		GLfloat positionLight[] = { lightCoord[lightSelected].x, lightCoord[lightSelected].y, lightCoord[lightSelected].z, (int)isPointLight[lightSelected] };	//0 value for the last argument means infinite distance away
-		glLightfv(GL_LIGHT0 + lightSelected, GL_POSITION, positionLight);
+			GLfloat positionLight[] = { lightCoord[i].x, lightCoord[i].y, lightCoord[i].z, (int)isPointLight[i] };	//0 value for the last argument means infinite distance away
+			glLightfv(GL_LIGHT0 + i, GL_POSITION, positionLight);
 
-		glLightfv(GL_LIGHT0 + lightSelected, GL_AMBIENT, ambientLight);
-		glLightfv(GL_LIGHT0 + lightSelected, GL_DIFFUSE, diffuseLight);
-		glLightfv(GL_LIGHT0 + lightSelected, GL_SPECULAR, specularLight);
+			glLightfv(GL_LIGHT0 + i, GL_AMBIENT, ambientLight);
+			glLightfv(GL_LIGHT0 + i, GL_DIFFUSE, diffuseLight);
+			glLightfv(GL_LIGHT0 + i, GL_SPECULAR, specularLight);
 
-		GLfloat ambientMat[] = { ambMat.r, ambMat.g, ambMat.b, ambMat.a };
-		GLfloat diffuseMat[] = { difMat.r, difMat.g, difMat.b, difMat.a };
-		GLfloat specularMat[] = { specMat.r, specMat.g, specMat.b, specMat.a };
+			GLfloat ambientMat[] = { ambMat.r, ambMat.g, ambMat.b, ambMat.a };
+			GLfloat diffuseMat[] = { difMat.r, difMat.g, difMat.b, difMat.a };
+			GLfloat specularMat[] = { specMat.r, specMat.g, specMat.b, specMat.a };
 
-		glMaterialfv(GL_FRONT, GL_AMBIENT, ambientMat);
-		glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuseMat);
-		glMaterialfv(GL_FRONT, GL_SPECULAR, specularMat);
-		glMaterialf(GL_FRONT, GL_SHININESS, GLfloat(shiny));
+			glMaterialfv(GL_FRONT, GL_AMBIENT, ambientMat);
+			glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuseMat);
+			glMaterialfv(GL_FRONT, GL_SPECULAR, specularMat);
+			glMaterialf(GL_FRONT, GL_SHININESS, GLfloat(shiny));
+		}
+		else {
+			glDisable(GL_LIGHT0 + i);
+		}
 	}
 
 	glBegin(GL_TRIANGLES);
