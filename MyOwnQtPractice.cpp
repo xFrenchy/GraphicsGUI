@@ -242,9 +242,6 @@ void MyOwnQtPractice::toggleLightDistance()
 
 void MyOwnQtPractice::toggleEnableLight()
 {
-	//TODO: This toggle doesn't work, glEnable the hex address isn't turning on the light(diffuse and specular don't work)
-	//the lights are only working if I enable them at the resize function.. could be because I'm not using hex for those ones
-
 	int index = this->ui.viewport->lightSelected;
 	this->ui.viewport->isLightEnabled[index] = !(this->ui.viewport->isLightEnabled[index]);
 	//I could shorten the above 3 lines to this 1 line, but my god does it look ugly. 
@@ -252,18 +249,10 @@ void MyOwnQtPractice::toggleEnableLight()
 	//this->ui.viewport->isLightEnabled[(this->ui.LightPicker->currentText().data()[currentLight.size() - 1]).digitValue() - 1] == !(this->ui.viewport->isLightEnabled[(this->ui.LightPicker->currentText().data()[currentLight.size() - 1]).digitValue() - 1]);
 	QString text;
 	if (this->ui.viewport->isLightEnabled[index]) {
-		//we just set it to enable, so let's do exactly that
-		//GL_LIGHT0 is defined as 0x4000, GL_Light1 is 0x4001, 2 is 0x4002 so we can just increment the hex value
-		//glEnable(0x4000 + index);
-		//or
-		//glEnable(GL_LIGHT0 + index);	<--- this is better
-		//glEnable(GL_LIGHTING);
 		//change the text to the opposite now
 		text = "Disable Light(";
 	}
 	else {
-		//glDisable(0x4000 + index);
-		//glDisable(GL_LIGHTING);
 		text = "Enable Light(";
 	}
 	text.append(QString::number(index + 1));
@@ -295,6 +284,29 @@ void MyOwnQtPractice::selectLight(QString name)
 	this->ui.xBoxLight->setValue(this->ui.viewport->lightCoord[index].x);
 	this->ui.yBoxLight->setValue(this->ui.viewport->lightCoord[index].y);
 	this->ui.zBoxLight->setValue(this->ui.viewport->lightCoord[index].z);
+	//Now update the dials to their correct value based on the current light ambient/diffuse/specular of the current light
+	float r, g, b;
+	//RGB values are stored between 0.00-1.00 so we need to map it back to 100
+	r = this->ui.viewport->ambLight[index].r;
+	g = this->ui.viewport->ambLight[index].g;
+	b = this->ui.viewport->ambLight[index].b;
+	this->ui.LightAmbR->setValue(int(r * 100));
+	this->ui.LightAmbG->setValue(int(g * 100));
+	this->ui.LightAmbB->setValue(int(b * 100));
+
+	r = this->ui.viewport->difLight[index].r;
+	g = this->ui.viewport->difLight[index].g;
+	b = this->ui.viewport->difLight[index].b;
+	this->ui.LightDiffR->setValue(int(r * 100));
+	this->ui.LightDiffG->setValue(int(g * 100));
+	this->ui.LightDiffB->setValue(int(b * 100));
+
+	r = this->ui.viewport->specLight[index].r;
+	g = this->ui.viewport->specLight[index].g;
+	b = this->ui.viewport->specLight[index].b;
+	this->ui.LightSpecR->setValue(int(r * 100));
+	this->ui.LightSpecG->setValue(int(g * 100));
+	this->ui.LightSpecB->setValue(int(b * 100));
 	this->ui.viewport->update();
 }
 
