@@ -27,6 +27,7 @@ public slots:
 	void updateLightCoord(int val);
 	void updateShiny(int val);
 	void updateCamCoord(int val);
+	void selectShader(QString name);
 
 private:
     Ui::MyOwnQtPracticeClass ui;

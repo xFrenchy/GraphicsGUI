@@ -348,3 +348,20 @@ void MyOwnQtPractice::updateCamCoord(int val)
 	}
 	this->ui.viewport->update();
 }
+
+void MyOwnQtPractice::selectShader(QString name)
+{
+	QObject *pObject = sender();
+	QString name = pObject->objectName();
+	QString substr = "ShaderButton";
+	name.remove(substr);
+	name = name.toLower();
+	if (name == "none") {
+		;
+	}
+	else if (name == "toon") {
+		;
+	}
+
+	this->ui.viewport->update();
+}
