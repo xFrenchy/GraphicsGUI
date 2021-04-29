@@ -103,6 +103,9 @@ public:
     QSpinBox *zBoxCam;
     QLabel *label_33;
     QLabel *label_34;
+    QLabel *label_35;
+    QPushButton *NoneShaderButton;
+    QPushButton *ToonShaderButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -389,6 +392,15 @@ public:
         label_34 = new QLabel(widget);
         label_34->setObjectName(QString::fromUtf8("label_34"));
         label_34->setGeometry(QRect(156, 161, 71, 16));
+        label_35 = new QLabel(widget);
+        label_35->setObjectName(QString::fromUtf8("label_35"));
+        label_35->setGeometry(QRect(240, 210, 47, 13));
+        NoneShaderButton = new QPushButton(widget);
+        NoneShaderButton->setObjectName(QString::fromUtf8("NoneShaderButton"));
+        NoneShaderButton->setGeometry(QRect(196, 224, 61, 21));
+        ToonShaderButton = new QPushButton(widget);
+        ToonShaderButton->setObjectName(QString::fromUtf8("ToonShaderButton"));
+        ToonShaderButton->setGeometry(QRect(260, 224, 61, 21));
         OooWhee->raise();
         label_2->raise();
         ySlider->raise();
@@ -458,6 +470,9 @@ public:
         label_33->raise();
         zBoxCam->raise();
         label_34->raise();
+        label_35->raise();
+        NoneShaderButton->raise();
+        ToonShaderButton->raise();
 
         gridLayout->addWidget(widget, 0, 0, 1, 1);
 
@@ -508,6 +523,12 @@ public:
         QObject::connect(xBoxCam, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateCamCoord(int)));
         QObject::connect(yBoxCam, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateCamCoord(int)));
         QObject::connect(zBoxCam, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateCamCoord(int)));
+        QObject::connect(NoneShaderButton, SIGNAL(clicked()), MyOwnQtPracticeClass, SLOT(selectShader()));
+        QObject::connect(ToonShaderButton, SIGNAL(clicked()), MyOwnQtPracticeClass, SLOT(selectShader()));
+
+        NoneShaderButton->setDefault(true);
+        ToonShaderButton->setDefault(false);
+
 
         QMetaObject::connectSlotsByName(MyOwnQtPracticeClass);
     } // setupUi
@@ -570,6 +591,9 @@ public:
         label_32->setText(QApplication::translate("MyOwnQtPracticeClass", "Y", nullptr));
         label_33->setText(QApplication::translate("MyOwnQtPracticeClass", "Z", nullptr));
         label_34->setText(QApplication::translate("MyOwnQtPracticeClass", "Light Position", nullptr));
+        label_35->setText(QApplication::translate("MyOwnQtPracticeClass", "Shaders:", nullptr));
+        NoneShaderButton->setText(QApplication::translate("MyOwnQtPracticeClass", "None", nullptr));
+        ToonShaderButton->setText(QApplication::translate("MyOwnQtPracticeClass", "Toon", nullptr));
     } // retranslateUi
 
 };
