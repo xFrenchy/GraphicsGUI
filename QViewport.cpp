@@ -5,6 +5,7 @@
 #include <cstdio>	//reading chunks, opening file
 #include <stdio.h>	//fileno
 #include <io.h>
+#include <GL/glew.h>
 
 QViewport::QViewport(QWidget *parent) {
 	this->xSlider = 0;
@@ -35,6 +36,25 @@ QViewport::~QViewport() {
 
 void QViewport::initializeGL() {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glewInit();
+	if (glewIsSupported("GL_VERSION_2_0"))
+		cout << "Ready for OpenGL 2.0\n";
+	else {
+		cout << "OpenGL 2.0 not supported\n";
+	}
+
+	glShadeModel(GL_SMOOTH);	//enables intensity reflected light at each polygon vertex and interpolates across polygon at each point
+	//glEnable(GL_NORMALIZE);	//needed to enable normals for surfaces for lights
+	//https://community.khronos.org/t/shininess/18327/10
+	//glEnable(GL_COLOR_MATERIAL);
+	//glColorMaterial(GL_FRONT, GL_SPECULAR);
+	//glEnable(GL_DEPTH_TEST);
+
+	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHT1);
+	glEnable(GL_LIGHT2);
+	glEnable(GL_LIGHTING);
+
 }
 
 void QViewport::paintGL() {
@@ -99,17 +119,6 @@ void QViewport::resizeGL(int width, int height) {
 	//gluPerspective(150.0, float(width) / float(height), 0.01, 300.0f);	<--- much better perspective for cup and spoon
 	gluPerspective(65.0, float(width) / float(height), 0.01, 500.0f);
 	glMatrixMode(GL_MODELVIEW);
-	glShadeModel(GL_SMOOTH);	//enables intensity reflected light at each polygon vertex and interpolates across polygon at each point
-	//glEnable(GL_NORMALIZE);	//needed to enable normals for surfaces for lights
-	//https://community.khronos.org/t/shininess/18327/10
-	//glEnable(GL_COLOR_MATERIAL);
-	//glColorMaterial(GL_FRONT, GL_SPECULAR);
-	//glEnable(GL_DEPTH_TEST);
-	
-	glEnable(GL_LIGHT0);
-	glEnable(GL_LIGHT1);
-	glEnable(GL_LIGHT2);
-	glEnable(GL_LIGHTING);
 }
 
 void QViewport::read3DS(std::string fileName)
