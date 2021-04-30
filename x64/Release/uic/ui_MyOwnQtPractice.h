@@ -545,7 +545,7 @@ public:
         ModelPicker->setItemText(0, QApplication::translate("MyOwnQtPracticeClass", "Blender", nullptr));
         ModelPicker->setItemText(1, QApplication::translate("MyOwnQtPracticeClass", "Cup", nullptr));
         ModelPicker->setItemText(2, QApplication::translate("MyOwnQtPracticeClass", "Cyph", nullptr));
-        ModelPicker->setItemText(3, QApplication::translate("MyOwnQtPracticeClass", "Huble", nullptr));
+        ModelPicker->setItemText(3, QApplication::translate("MyOwnQtPracticeClass", "Hubble", nullptr));
         ModelPicker->setItemText(4, QApplication::translate("MyOwnQtPracticeClass", "Planet Camera", nullptr));
         ModelPicker->setItemText(5, QApplication::translate("MyOwnQtPracticeClass", "Shovel", nullptr));
         ModelPicker->setItemText(6, QApplication::translate("MyOwnQtPracticeClass", "Shuttle", nullptr));
