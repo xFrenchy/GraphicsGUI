@@ -1,11 +1,15 @@
-#include "QViewport.h"
-#include "OpenGL.h"
-
 #include <iostream>
 #include <cstdio>	//reading chunks, opening file
 #include <stdio.h>	//fileno
 #include <io.h>
 #include <GL/glew.h>
+
+#include "QViewport.h"
+#include "OpenGL.h"
+
+#define highp
+#define mediump
+#define lowp
 
 QViewport::QViewport(QWidget *parent) {
 	this->xSlider = 0;
@@ -18,7 +22,9 @@ QViewport::QViewport(QWidget *parent) {
 	this->zZoom = -200;
 	this->shiny = 1;
 	this->modelName = "";
+	this->shaderName = "";
 	this->isRendered = false;
+	this->isShaderOn = false;
 	for (int i = 0; i < 3; ++i) {
 		this->isPointLight[i] = true;
 		this->isLightEnabled[i] = false;
@@ -36,6 +42,22 @@ QViewport::~QViewport() {
 
 void QViewport::initializeGL() {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+
+	glShadeModel(GL_SMOOTH);	//enables intensity reflected light at each polygon vertex and interpolates across polygon at each point	
+	//https://community.khronos.org/t/shininess/18327/10
+	//glEnable(GL_COLOR_MATERIAL);
+	//glColorMaterial(GL_FRONT, GL_SPECULAR);
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LESS);
+	glFrontFace(GL_CCW);
+	glEnable(GL_AUTO_NORMAL);
+	glEnable(GL_NORMALIZE);	//needed to enable normals for surfaces for lights
+
+	glEnable(GL_LIGHT0);
+	glEnable(GL_LIGHT1);
+	glEnable(GL_LIGHT2);
+	glEnable(GL_LIGHTING);
+
 	glewInit();
 	if (glewIsSupported("GL_VERSION_2_0"))
 		cout << "Ready for OpenGL 2.0\n";
@@ -43,18 +65,7 @@ void QViewport::initializeGL() {
 		cout << "OpenGL 2.0 not supported\n";
 	}
 
-	glShadeModel(GL_SMOOTH);	//enables intensity reflected light at each polygon vertex and interpolates across polygon at each point
-	//glEnable(GL_NORMALIZE);	//needed to enable normals for surfaces for lights
-	//https://community.khronos.org/t/shininess/18327/10
-	//glEnable(GL_COLOR_MATERIAL);
-	//glColorMaterial(GL_FRONT, GL_SPECULAR);
-	//glEnable(GL_DEPTH_TEST);
-
-	glEnable(GL_LIGHT0);
-	glEnable(GL_LIGHT1);
-	glEnable(GL_LIGHT2);
-	glEnable(GL_LIGHTING);
-
+	this->setShader();
 }
 
 void QViewport::paintGL() {
@@ -109,6 +120,18 @@ void QViewport::paintGL() {
 			glVertex3f(vertex[polygon[i].c].x, vertex[polygon[i].c].y, vertex[polygon[i].c].z);
 		}
 	glEnd();
+
+	if (this->isShaderOn) {
+		cout << "Turning on shader\n";
+		glUseProgram(this->p);
+		//this->setShader();
+	}
+	else
+	{
+		cout << "Shader off\n";
+		glUseProgram(0);	//https://stackoverflow.com/questions/13546461/what-does-gluseprogram0-do
+	}
+
 	glPopMatrix();
 }
 
@@ -116,8 +139,8 @@ void QViewport::resizeGL(int width, int height) {
 	glViewport(0, 0, width, height);
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
-	//gluPerspective(150.0, float(width) / float(height), 0.01, 300.0f);	<--- much better perspective for cup and spoon
-	gluPerspective(65.0, float(width) / float(height), 0.01, 500.0f);
+	//gluPerspective(150.0, float(width) / float(height), 0.01, 500.0f);
+	gluPerspective(65.0, float(width) / float(height), 0.01, 1000.0f);
 	glMatrixMode(GL_MODELVIEW);
 }
 
@@ -206,6 +229,149 @@ void QViewport::read3DS(std::string fileName)
 	}
 	fclose(modelFile);
 	return;
+}
+
+void QViewport::setShader()
+{
+	char *vs = NULL, *fs = NULL, *fs2 = NULL;
+
+	v = glCreateShader(GL_VERTEX_SHADER);
+	f = glCreateShader(GL_FRAGMENT_SHADER);
+	f2 = glCreateShader(GL_FRAGMENT_SHADER);
+
+	vs = textFileRead("Shaders/toonf2.vert");
+	fs = textFileRead("Shaders/toonf2.frag");
+
+	const char * vv = vs;
+	const char * ff = fs;
+
+	glShaderSource(v, 1, &vv, NULL);
+	glShaderSource(f, 1, &ff, NULL);
+
+	free(vs); free(fs);
+
+	glCompileShader(v);
+	glCompileShader(f);
+
+	printShaderInfoLog(v);
+	printShaderInfoLog(f);
+	printShaderInfoLog(f2);
+
+	p = glCreateProgram();
+	glAttachShader(p, v);
+	glAttachShader(p, f);
+
+	glLinkProgram(p);
+	printProgramInfoLog(p);
+
+	glUseProgram(p);
+	loc = glGetUniformLocation(p, "time");
+}
+
+char* QViewport::textFileRead(char * fn)
+{
+	FILE *fp;
+	char *content = NULL;
+
+	std::size_t count = 0;
+
+	if (fn != NULL) {
+		fp = fopen(fn, "rt");
+
+		if (fp != NULL) {
+
+			fseek(fp, 0, SEEK_END);
+			count = ftell(fp);
+			rewind(fp);
+
+			if (count > 0) {
+				content = (char *)malloc(sizeof(char) * (count + 1));
+				count = fread(content, sizeof(char), count, fp);
+				content[count] = '\0';
+			}
+			fclose(fp);
+		}
+	}
+	return content;
+}
+
+void QViewport::printShaderInfoLog(GLuint obj)
+{
+	int infologLength = 0;
+	int charsWritten = 0;
+	char *infoLog;
+
+	glGetShaderiv(obj, GL_INFO_LOG_LENGTH, &infologLength);
+
+	if (infologLength > 0)
+	{
+		infoLog = (char *)malloc(infologLength);
+		glGetShaderInfoLog(obj, infologLength, &charsWritten, infoLog);
+		printf("%s\n", infoLog);
+		free(infoLog);
+	}
+}
+
+void QViewport::printProgramInfoLog(GLuint obj)
+{
+	int infologLength = 0;
+	int charsWritten = 0;
+	char *infoLog;
+
+	glGetProgramiv(obj, GL_INFO_LOG_LENGTH, &infologLength);
+
+	if (infologLength > 0)
+	{
+		infoLog = (char *)malloc(infologLength);
+		glGetProgramInfoLog(obj, infologLength, &charsWritten, infoLog);
+		printf("%s\n", infoLog);
+		free(infoLog);
+	}
+}
+
+void QViewport::exampleShader()
+{
+	QOpenGLShader shader(QOpenGLShader::Vertex);
+	QOpenGLShaderProgram program(this);	//a bit confused as to what needs to be inside this constructor
+	program.addShaderFromSourceCode(QOpenGLShader::Vertex,
+		"attribute highp vec4 vertex;\n"
+		"uniform highp mat4 matrix;\n"
+		"void main(void)\n"
+		"{\n"
+		"   gl_Position = matrix * vertex;\n"
+		"}");
+	program.addShaderFromSourceCode(QOpenGLShader::Fragment,
+		"uniform mediump vec4 color;\n"
+		"void main(void)\n"
+		"{\n"
+		"   gl_FragColor = color;\n"
+		"}");
+	//program.addShader(&shader);
+	program.link();
+	program.bind();
+	int vertexLocation = program.attributeLocation("vertex");
+	int matrixLocation = program.uniformLocation("matrix");
+	int colorLocation = program.uniformLocation("color");
+
+	static GLfloat const triangleVertices[] = {
+	60.0f,  10.0f,  0.0f,
+	110.0f, 110.0f, 0.0f,
+	10.0f,  110.0f, 0.0f
+	};
+
+	QColor color(0, 255, 0, 255);
+
+	QMatrix4x4 pmvMatrix;
+	pmvMatrix.ortho(rect());
+
+	program.enableAttributeArray(vertexLocation);
+	program.setAttributeArray(vertexLocation, triangleVertices, 3);
+	program.setUniformValue(matrixLocation, pmvMatrix);
+	program.setUniformValue(colorLocation, color);
+
+	glDrawArrays(GL_TRIANGLES, 0, 3);
+
+	program.disableAttributeArray(vertexLocation);
 }
 
 void QViewport::clear()

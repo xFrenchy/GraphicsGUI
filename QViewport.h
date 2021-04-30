@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QOpenGLWidget.h>
+#include <qopenglshaderprogram.h>
 #include <string>
 
 using namespace std;
@@ -40,11 +41,6 @@ struct Specular {
 //	Material::Material() { r = 0.0; g = 0.0; b = 0.0; }
 //};
 
-//struct Shiny {
-//	float r, g, b = 0;
-//	Shiny::Shiny() { r = 0.0; g = 0.0; b = 0.0; }
-//};
-
 struct LightLocation {
 	int x, y, z, d = 0;	//4th value is pointlight or directional light
 	LightLocation::LightLocation() { x = 0; y = 0; z = 0; d = 0; }
@@ -61,6 +57,11 @@ public:
 	void paintGL();
 	void resizeGL(int width, int height);
 	void read3DS(string fileName);
+	void setShader();
+	char* textFileRead(char *fn);
+	void printShaderInfoLog(GLuint obj);
+	void printProgramInfoLog(GLuint obj);
+	void exampleShader();
 	void clear();
 
 	int xSlider;
@@ -93,6 +94,11 @@ public:
 	Specular specMat;
 	int shiny;
 
+	//---Shader information about current model
+	bool isShaderOn;
+	string shaderName;
+	GLint loc;
+	GLuint v, f, f2, p;
 private:
 
 
