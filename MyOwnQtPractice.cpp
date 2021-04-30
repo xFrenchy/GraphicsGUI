@@ -349,7 +349,7 @@ void MyOwnQtPractice::updateCamCoord(int val)
 	this->ui.viewport->update();
 }
 
-void MyOwnQtPractice::selectShader(QString name)
+void MyOwnQtPractice::selectShader()
 {
 	QObject *pObject = sender();
 	QString name = pObject->objectName();
@@ -360,8 +360,10 @@ void MyOwnQtPractice::selectShader(QString name)
 		;
 	}
 	else if (name == "toon") {
-		;
+		this->ui.viewport->setShader();
+		//this->ui.viewport->exampleShader();
 	}
 
+	this->ui.viewport->isShaderOn = !(this->ui.viewport->isShaderOn);
 	this->ui.viewport->update();
 }
