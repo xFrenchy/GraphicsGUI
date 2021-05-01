@@ -22,7 +22,7 @@ QViewport::QViewport(QWidget *parent) {
 	this->zZoom = -200;
 	this->shiny = 1;
 	this->modelName = "";
-	this->shaderName = "";
+	this->shaderName = "none";
 	this->isRendered = false;
 	this->isShaderOn = false;
 	for (int i = 0; i < 3; ++i) {
@@ -43,20 +43,21 @@ QViewport::~QViewport() {
 void QViewport::initializeGL() {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-	glShadeModel(GL_SMOOTH);	//enables intensity reflected light at each polygon vertex and interpolates across polygon at each point	
+	//glShadeModel(GL_SMOOTH);	//enables intensity reflected light at each polygon vertex and interpolates across polygon at each point	
 	//https://community.khronos.org/t/shininess/18327/10
 	//glEnable(GL_COLOR_MATERIAL);
 	//glColorMaterial(GL_FRONT, GL_SPECULAR);
 	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LESS);
-	glFrontFace(GL_CCW);
-	glEnable(GL_AUTO_NORMAL);
+	//glDepthFunc(GL_LESS);
+	//glFrontFace(GL_CCW);
 	glEnable(GL_NORMALIZE);	//needed to enable normals for surfaces for lights
+	glEnable(GL_AUTO_NORMAL);	//GIVE ME THE FUCKING NORMALS THAT I REQUIRE
+	//glEnable(GL_TEXTURE_2D);
 
+	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	glEnable(GL_LIGHT1);
 	glEnable(GL_LIGHT2);
-	glEnable(GL_LIGHTING);
 
 	glewInit();
 	if (glewIsSupported("GL_VERSION_2_0"))
@@ -65,13 +66,14 @@ void QViewport::initializeGL() {
 		cout << "OpenGL 2.0 not supported\n";
 	}
 
-	this->setShader();
+	//this->setShader();
 }
 
 void QViewport::paintGL() {
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glPushMatrix();
+
 	//gluLookAt(GLfloat(xSlider), GLfloat(ySlider), GLfloat(zSlider), 0.0f, 0.0f, 0.0f, 0.0f, cos(ySlider*0.001), 0.0f);
 	gluLookAt(xZoom, yZoom, zZoom, 0.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f);
 	glRotatef(GLfloat(xSlider), 1, 0, 0);
@@ -79,6 +81,7 @@ void QViewport::paintGL() {
 	glRotatef(GLfloat(zSlider), 0, 0, 1);
 	glBindTexture(GL_TEXTURE_2D, 1);
 
+	//Light stuff
 	for (int i = 0; i < 3; ++i) {
 		if (isLightEnabled[i]) {
 			glEnable(GL_LIGHT0 + i);
@@ -86,7 +89,7 @@ void QViewport::paintGL() {
 			GLfloat diffuseLight[] = { difLight[i].r, difLight[i].g, difLight[i].b, difLight[i].a };
 			GLfloat specularLight[] = { specLight[i].r, specLight[i].g, specLight[i].b, specLight[i].a };
 
-			GLfloat positionLight[] = { lightCoord[i].x, lightCoord[i].y, lightCoord[i].z, (int)isPointLight[i] };	//0 value for the last argument means infinite distance away
+			GLfloat positionLight[] = { lightCoord[i].x, lightCoord[i].y, lightCoord[i].z, lightCoord[i].d };	//0 value for the last argument means infinite distance away
 			glLightfv(GL_LIGHT0 + i, GL_POSITION, positionLight);
 
 			glLightfv(GL_LIGHT0 + i, GL_AMBIENT, ambientLight);
@@ -106,7 +109,17 @@ void QViewport::paintGL() {
 			glDisable(GL_LIGHT0 + i);
 		}
 	}
-
+	//Shader stuff
+	if (this->isShaderOn && this->shaderName != "none") {
+		//glUseProgram(this->p);
+		cout << "Light 0 position: " << lightCoord[0].x << " " << lightCoord[0].y << " " << lightCoord[0].z << " " << lightCoord[0].d << endl;
+		this->setShader();
+	}
+	else
+	{
+		glUseProgram(0);	//https://stackoverflow.com/questions/13546461/what-does-gluseprogram0-do
+	}
+	//Model stuff
 	glBegin(GL_TRIANGLES);
 		glColor3f(1.0f, 0.0f, 0.0f);	//this will be cancelled due to the lighting
 		for (int i = 0; i < polygons_qty; ++i) {
@@ -120,17 +133,6 @@ void QViewport::paintGL() {
 			glVertex3f(vertex[polygon[i].c].x, vertex[polygon[i].c].y, vertex[polygon[i].c].z);
 		}
 	glEnd();
-
-	if (this->isShaderOn) {
-		cout << "Turning on shader\n";
-		glUseProgram(this->p);
-		//this->setShader();
-	}
-	else
-	{
-		cout << "Shader off\n";
-		glUseProgram(0);	//https://stackoverflow.com/questions/13546461/what-does-gluseprogram0-do
-	}
 
 	glPopMatrix();
 }
@@ -239,8 +241,10 @@ void QViewport::setShader()
 	f = glCreateShader(GL_FRAGMENT_SHADER);
 	f2 = glCreateShader(GL_FRAGMENT_SHADER);
 
-	vs = textFileRead("Shaders/toonf2.vert");
-	fs = textFileRead("Shaders/toonf2.frag");
+	string vertFile = "Shaders/" + this->shaderName + ".vert";
+	string fragFile = "Shaders/" + this->shaderName + ".frag";
+	vs = textFileRead(&vertFile[0]);
+	fs = textFileRead(&fragFile[0]);
 
 	const char * vv = vs;
 	const char * ff = fs;
