@@ -232,6 +232,7 @@ void MyOwnQtPractice::toggleLightDistance()
 {
 	int index = this->ui.viewport->lightSelected;	//index value
 	this->ui.viewport->isPointLight[index] = !(this->ui.viewport->isPointLight[index]);
+	this->ui.viewport->lightCoord[index].d = int(this->ui.viewport->isPointLight[index]);
 	QString text = "Point Light(";
 	text.append(QString::number(index+1));
 	text.append(") = ");
@@ -357,13 +358,23 @@ void MyOwnQtPractice::selectShader()
 	name.remove(substr);
 	name = name.toLower();
 	if (name == "none") {
-		;
+		this->ui.NoneShaderButton->setDefault(true);
+		this->ui.ToonShaderButton->setDefault(false);
+		this->ui.SobelShaderButton->setDefault(false);
 	}
 	else if (name == "toon") {
-		this->ui.viewport->setShader();
+		this->ui.NoneShaderButton->setDefault(false);
+		this->ui.ToonShaderButton->setDefault(true);
+		this->ui.SobelShaderButton->setDefault(false);
 		//this->ui.viewport->exampleShader();
 	}
+	else if (name == "sobel") {
+		this->ui.NoneShaderButton->setDefault(false);
+		this->ui.ToonShaderButton->setDefault(false);
+		this->ui.SobelShaderButton->setDefault(true);
+	}
 
+	this->ui.viewport->shaderName = name.toStdString();
 	this->ui.viewport->isShaderOn = !(this->ui.viewport->isShaderOn);
 	this->ui.viewport->update();
 }
