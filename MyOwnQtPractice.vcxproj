@@ -103,6 +103,12 @@
   <ItemGroup>
     <ClInclude Include="OpenGL.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Shaders\sobel.frag" />
+    <None Include="Shaders\sobel.vert" />
+    <None Include="Shaders\toon.frag" />
+    <None Include="Shaders\toon.vert" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
     <Import Project="$(QtMsBuild)\qt.targets" />

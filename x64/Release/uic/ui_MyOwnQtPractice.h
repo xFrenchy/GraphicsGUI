@@ -106,6 +106,7 @@ public:
     QLabel *label_35;
     QPushButton *NoneShaderButton;
     QPushButton *ToonShaderButton;
+    QPushButton *SobelShaderButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -278,8 +279,8 @@ public:
         zBoxLight = new QSpinBox(widget);
         zBoxLight->setObjectName(QString::fromUtf8("zBoxLight"));
         zBoxLight->setGeometry(QRect(285, 180, 40, 16));
-        zBoxLight->setMinimum(-50);
-        zBoxLight->setMaximum(50);
+        zBoxLight->setMinimum(-500);
+        zBoxLight->setMaximum(500);
         zBoxLight->setSingleStep(5);
         label_17 = new QLabel(widget);
         label_17->setObjectName(QString::fromUtf8("label_17"));
@@ -401,6 +402,9 @@ public:
         ToonShaderButton = new QPushButton(widget);
         ToonShaderButton->setObjectName(QString::fromUtf8("ToonShaderButton"));
         ToonShaderButton->setGeometry(QRect(260, 224, 61, 21));
+        SobelShaderButton = new QPushButton(widget);
+        SobelShaderButton->setObjectName(QString::fromUtf8("SobelShaderButton"));
+        SobelShaderButton->setGeometry(QRect(196, 250, 61, 21));
         OooWhee->raise();
         label_2->raise();
         ySlider->raise();
@@ -473,6 +477,7 @@ public:
         label_35->raise();
         NoneShaderButton->raise();
         ToonShaderButton->raise();
+        SobelShaderButton->raise();
 
         gridLayout->addWidget(widget, 0, 0, 1, 1);
 
@@ -525,9 +530,11 @@ public:
         QObject::connect(zBoxCam, SIGNAL(valueChanged(int)), MyOwnQtPracticeClass, SLOT(updateCamCoord(int)));
         QObject::connect(NoneShaderButton, SIGNAL(clicked()), MyOwnQtPracticeClass, SLOT(selectShader()));
         QObject::connect(ToonShaderButton, SIGNAL(clicked()), MyOwnQtPracticeClass, SLOT(selectShader()));
+        QObject::connect(SobelShaderButton, SIGNAL(clicked()), MyOwnQtPracticeClass, SLOT(selectShader()));
 
         NoneShaderButton->setDefault(true);
         ToonShaderButton->setDefault(false);
+        SobelShaderButton->setDefault(false);
 
 
         QMetaObject::connectSlotsByName(MyOwnQtPracticeClass);
@@ -594,6 +601,7 @@ public:
         label_35->setText(QApplication::translate("MyOwnQtPracticeClass", "Shaders:", nullptr));
         NoneShaderButton->setText(QApplication::translate("MyOwnQtPracticeClass", "None", nullptr));
         ToonShaderButton->setText(QApplication::translate("MyOwnQtPracticeClass", "Toon", nullptr));
+        SobelShaderButton->setText(QApplication::translate("MyOwnQtPracticeClass", "Sobel", nullptr));
     } // retranslateUi
 
 };
