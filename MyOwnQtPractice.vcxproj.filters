@@ -67,5 +67,17 @@
     <None Include="Shaders\toon.vert">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="Shaders\disco.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Shaders\disco.vert">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Shaders\noise.frag">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Shaders\noise.vert">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

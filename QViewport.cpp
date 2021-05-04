@@ -112,7 +112,7 @@ void QViewport::paintGL() {
 	//Shader stuff
 	if (this->isShaderOn && this->shaderName != "none") {
 		//glUseProgram(this->p);
-		cout << "Light 0 position: " << lightCoord[0].x << " " << lightCoord[0].y << " " << lightCoord[0].z << " " << lightCoord[0].d << endl;
+		//cout << "Light 0 position: " << lightCoord[0].x << " " << lightCoord[0].y << " " << lightCoord[0].z << " " << lightCoord[0].d << endl;
 		this->setShader();
 	}
 	else
@@ -123,12 +123,29 @@ void QViewport::paintGL() {
 	glBegin(GL_TRIANGLES);
 		glColor3f(1.0f, 0.0f, 0.0f);	//this will be cancelled due to the lighting
 		for (int i = 0; i < polygons_qty; ++i) {
+			//Accidentally metal spiky shell shader normals 
+			//glNormal3f(0, 0, 1);
+			//glNormal3f(1, 0, 0);
+			//glNormal3f(0, 1, 0);
+
+			float Nx = (vertex[polygon[i].b].y * vertex[polygon[i].c].z) - (vertex[polygon[i].b].z * vertex[polygon[i].c].y);
+			float Ny = (vertex[polygon[i].b].z * vertex[polygon[i].c].x) - (vertex[polygon[i].b].x * vertex[polygon[i].c].z);
+			float Nz = (vertex[polygon[i].b].x * vertex[polygon[i].c].y) - (vertex[polygon[i].b].y * vertex[polygon[i].c].x);
+			glNormal3f(Nx, Ny, Nz);
 			glTexCoord2f(mapcoord[polygon[i].a].u, mapcoord[polygon[i].a].v);
 			glVertex3f(vertex[polygon[i].a].x, vertex[polygon[i].a].y, vertex[polygon[i].a].z);
 
+			Nx = (vertex[polygon[i].a].y * vertex[polygon[i].c].z) - (vertex[polygon[i].a].z * vertex[polygon[i].c].y);
+			Ny = (vertex[polygon[i].a].z * vertex[polygon[i].c].x) - (vertex[polygon[i].a].x * vertex[polygon[i].c].z);
+			Nz = (vertex[polygon[i].a].x * vertex[polygon[i].c].y) - (vertex[polygon[i].a].y * vertex[polygon[i].c].x);
+			glNormal3f(Nx, Ny, Nz);
 			glTexCoord2f(mapcoord[polygon[i].b].u, mapcoord[polygon[i].b].v);
 			glVertex3f(vertex[polygon[i].b].x, vertex[polygon[i].b].y, vertex[polygon[i].b].z);
 
+			Nx = (vertex[polygon[i].a].y * vertex[polygon[i].b].z) - (vertex[polygon[i].a].z * vertex[polygon[i].b].y);
+			Ny = (vertex[polygon[i].a].z * vertex[polygon[i].b].x) - (vertex[polygon[i].a].x * vertex[polygon[i].b].z);
+			Nz = (vertex[polygon[i].a].x * vertex[polygon[i].b].y) - (vertex[polygon[i].a].y * vertex[polygon[i].b].x);
+			glNormal3f(Nx, Ny, Nz);
 			glTexCoord2f(mapcoord[polygon[i].c].u, mapcoord[polygon[i].c].v);
 			glVertex3f(vertex[polygon[i].c].x, vertex[polygon[i].c].y, vertex[polygon[i].c].z);
 		}

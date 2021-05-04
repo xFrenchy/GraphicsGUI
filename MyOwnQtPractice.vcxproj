@@ -104,6 +104,10 @@
     <ClInclude Include="OpenGL.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shaders\disco.frag" />
+    <None Include="Shaders\disco.vert" />
+    <None Include="Shaders\noise.frag" />
+    <None Include="Shaders\noise.vert" />
     <None Include="Shaders\sobel.frag" />
     <None Include="Shaders\sobel.vert" />
     <None Include="Shaders\toon.frag" />

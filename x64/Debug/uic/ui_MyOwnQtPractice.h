@@ -107,6 +107,8 @@ public:
     QPushButton *NoneShaderButton;
     QPushButton *ToonShaderButton;
     QPushButton *SobelShaderButton;
+    QPushButton *DiscoShaderButton;
+    QPushButton *NoiseShaderButton;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -405,6 +407,12 @@ public:
         SobelShaderButton = new QPushButton(widget);
         SobelShaderButton->setObjectName(QString::fromUtf8("SobelShaderButton"));
         SobelShaderButton->setGeometry(QRect(196, 250, 61, 21));
+        DiscoShaderButton = new QPushButton(widget);
+        DiscoShaderButton->setObjectName(QString::fromUtf8("DiscoShaderButton"));
+        DiscoShaderButton->setGeometry(QRect(260, 250, 61, 21));
+        NoiseShaderButton = new QPushButton(widget);
+        NoiseShaderButton->setObjectName(QString::fromUtf8("NoiseShaderButton"));
+        NoiseShaderButton->setGeometry(QRect(196, 276, 61, 21));
         OooWhee->raise();
         label_2->raise();
         ySlider->raise();
@@ -478,6 +486,8 @@ public:
         NoneShaderButton->raise();
         ToonShaderButton->raise();
         SobelShaderButton->raise();
+        DiscoShaderButton->raise();
+        NoiseShaderButton->raise();
 
         gridLayout->addWidget(widget, 0, 0, 1, 1);
 
@@ -531,10 +541,14 @@ public:
         QObject::connect(NoneShaderButton, SIGNAL(clicked()), MyOwnQtPracticeClass, SLOT(selectShader()));
         QObject::connect(ToonShaderButton, SIGNAL(clicked()), MyOwnQtPracticeClass, SLOT(selectShader()));
         QObject::connect(SobelShaderButton, SIGNAL(clicked()), MyOwnQtPracticeClass, SLOT(selectShader()));
+        QObject::connect(DiscoShaderButton, SIGNAL(clicked()), MyOwnQtPracticeClass, SLOT(selectShader()));
+        QObject::connect(NoiseShaderButton, SIGNAL(clicked()), MyOwnQtPracticeClass, SLOT(selectShader()));
 
         NoneShaderButton->setDefault(true);
         ToonShaderButton->setDefault(false);
         SobelShaderButton->setDefault(false);
+        DiscoShaderButton->setDefault(false);
+        NoiseShaderButton->setDefault(false);
 
 
         QMetaObject::connectSlotsByName(MyOwnQtPracticeClass);
@@ -602,6 +616,8 @@ public:
         NoneShaderButton->setText(QApplication::translate("MyOwnQtPracticeClass", "None", nullptr));
         ToonShaderButton->setText(QApplication::translate("MyOwnQtPracticeClass", "Toon", nullptr));
         SobelShaderButton->setText(QApplication::translate("MyOwnQtPracticeClass", "Sobel", nullptr));
+        DiscoShaderButton->setText(QApplication::translate("MyOwnQtPracticeClass", "Disco", nullptr));
+        NoiseShaderButton->setText(QApplication::translate("MyOwnQtPracticeClass", "Noise", nullptr));
     } // retranslateUi
 
 };
