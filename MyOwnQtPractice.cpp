@@ -53,35 +53,65 @@ void MyOwnQtPractice::generateMeshFromFile(QString name)
 	if (name == "cup") {
 		//cup is quite massive and needs a different gluperspective
 		this->ui.viewport->read3DS("Models/cup_2.3DS");
+		this->ui.viewport->xZoom = 0;
+		this->ui.viewport->yZoom = -460;
+		this->ui.viewport->zZoom = 360;
 	}
 	else if (name == "spoon") {
 		this->ui.viewport->read3DS("Models/spoon.3ds");
+		this->ui.viewport->xZoom = -10;
+		this->ui.viewport->yZoom = 200;
+		this->ui.viewport->zZoom = -90;
 	}
 	else if (name == "blender") {
 		this->ui.viewport->read3DS("Models/a3dblend.3ds");
+		this->ui.viewport->xZoom = 0;
+		this->ui.viewport->yZoom = -40;
+		this->ui.viewport->zZoom = 10;
 	}
 	else if (name == "cyph") {
 		this->ui.viewport->read3DS("Models/aircyph.3ds");
+		this->ui.viewport->xZoom = 0;
+		this->ui.viewport->yZoom = 0;
+		this->ui.viewport->zZoom = 150;
 	}
 	else if (name == "hubble") {
 		//hubble is quite massive and needs a different gluperspective
 		this->ui.viewport->read3DS("Models/hst.3ds");
+		this->ui.viewport->xZoom = -300;
+		this->ui.viewport->yZoom = 100;
+		this->ui.viewport->zZoom = 500;
 	}
 	else if (name == "planet camera") {
 		this->ui.viewport->read3DS("Models/wfpc2.3ds");
+		this->ui.viewport->xZoom = -80;
+		this->ui.viewport->yZoom = 80;
+		this->ui.viewport->zZoom = 60;
 	}
 	else if (name == "shovel") {
 		this->ui.viewport->read3DS("Models/a3dshovl.3ds");
+		this->ui.viewport->xZoom = 0;
+		this->ui.viewport->yZoom = 80;
+		this->ui.viewport->zZoom = 60;
 	}
 	else if (name == "shuttle") {
 		//shuttle is a bit tiny
 		this->ui.viewport->read3DS("Models/shuttle.3ds");
+		this->ui.viewport->xZoom = 10;
+		this->ui.viewport->yZoom = 20;
+		this->ui.viewport->zZoom = 10;
 	}
 	else if (name == "wrench") {
 		this->ui.viewport->read3DS("Models/tolcwrm1.3ds");
+		this->ui.viewport->xZoom = 0;
+		this->ui.viewport->yZoom = 39;
+		this->ui.viewport->zZoom = 25;
 	}
 	else if (name == "zepplin") {
 		this->ui.viewport->read3DS("Models/Zepplin2.3ds");
+		this->ui.viewport->xZoom = 140;
+		this->ui.viewport->yZoom = -20;
+		this->ui.viewport->zZoom = 5;
 	}
 	
 	QString text = "Model Name: ";
