@@ -27,6 +27,7 @@ public slots:
 	void updateLightCoord(int val);
 	void updateShiny(int val);
 	void updateCamCoord(int val);
+	void updateAllCamCoord();
 	void selectShader();
 
 private:

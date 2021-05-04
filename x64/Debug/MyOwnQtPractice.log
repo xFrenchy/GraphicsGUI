@@ -1,2 +1,5 @@
-﻿  MyOwnQtPractice.cpp
+﻿  moc MyOwnQtPractice.h
+  MyOwnQtPractice.cpp
+  main.cpp
+  moc_MyOwnQtPractice.cpp
   MyOwnQtPractice.vcxproj -> C:\Users\Frenchy\Desktop\Spring 2021\Graphics\Final\MyOwnQtPractice\x64\Debug\MyOwnQtPractice.exe

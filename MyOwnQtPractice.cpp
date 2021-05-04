@@ -118,6 +118,7 @@ void MyOwnQtPractice::generateMeshFromFile(QString name)
 	text.append(QString::fromStdString(this->ui.viewport->modelName));
 
 	this->ui.ModelLabel->setText(text);
+	this->updateAllCamCoord();
 	this->ui.viewport->isRendered = true;
 	this->ui.viewport->update();
 }
@@ -380,6 +381,14 @@ void MyOwnQtPractice::updateCamCoord(int val)
 	this->ui.viewport->update();
 }
 
+void MyOwnQtPractice::updateAllCamCoord()
+{
+	this->ui.xBoxCam->setValue(this->ui.viewport->xZoom);
+	this->ui.yBoxCam->setValue(this->ui.viewport->yZoom);
+	this->ui.zBoxCam->setValue(this->ui.viewport->zZoom);
+	this->ui.viewport->update();
+}
+
 void MyOwnQtPractice::selectShader()
 {
 	QObject *pObject = sender();
@@ -427,3 +436,4 @@ void MyOwnQtPractice::selectShader()
 	this->ui.viewport->isShaderOn = !(this->ui.viewport->isShaderOn);
 	this->ui.viewport->update();
 }
+
