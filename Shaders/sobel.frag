@@ -2,6 +2,8 @@
 // GLSL Fragment Shader
 // Implementation by Patrick Hebron
 
+//https://gist.github.com/Hebali/6ebfc66106459aacee6a9fac029d0115
+
 uniform sampler2D	texture;
 uniform float 		width;
 uniform float 		height;

@@ -396,6 +396,7 @@ void MyOwnQtPractice::selectShader()
 	QString substr = "ShaderButton";
 	name.remove(substr);
 	name = name.toLower();
+	
 	if (name == "none") {
 		this->ui.NoneShaderButton->setDefault(true);
 		this->ui.ToonShaderButton->setDefault(false);
@@ -433,7 +434,13 @@ void MyOwnQtPractice::selectShader()
 		this->ui.NoiseShaderButton->setDefault(true);
 	}
 	this->ui.viewport->shaderName = name.toStdString();
-	this->ui.viewport->isShaderOn = !(this->ui.viewport->isShaderOn);
+
+	if (name == "none") {
+		this->ui.viewport->isShaderOn = false;
+	}
+	else {
+		this->ui.viewport->isShaderOn = true;
+	}
 	this->ui.viewport->update();
 }
 

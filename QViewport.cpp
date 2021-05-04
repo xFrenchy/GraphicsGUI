@@ -165,12 +165,14 @@ void QViewport::resizeGL(int width, int height) {
 
 void QViewport::read3DS(std::string fileName)
 {
-	// http://cse.ucdenver.edu/~mchoi/4565/Protected/Final/3ds.htm
-	//					Offset  | Length
-	//Chunk identifier: 0		|	2 bytes
-	//Chunk Length:		2		|	4 bytes
-	//Data:				6		|	n bytes
-	//Sub-chunks:		6+n		|	m bytes
+	/*http://cse.ucdenver.edu/~mchoi/4565/Protected/Final/3ds.htm
+				--Structure of 3DS objects--
+						Offset  | Length
+	  Chunk identifier: 0		|	2 bytes
+	  Chunk Length:		2		|	4 bytes
+	  Data:				6		|	n bytes
+	  Sub-chunks:		6+n		|	m bytes
+	*/
 	FILE *modelFile;
 	unsigned short identifier;	//2 bytes
 	unsigned int length;	//4 bytes
