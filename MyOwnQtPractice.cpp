@@ -361,19 +361,38 @@ void MyOwnQtPractice::selectShader()
 		this->ui.NoneShaderButton->setDefault(true);
 		this->ui.ToonShaderButton->setDefault(false);
 		this->ui.SobelShaderButton->setDefault(false);
+		this->ui.DiscoShaderButton->setDefault(false);
+		this->ui.NoiseShaderButton->setDefault(false);
 	}
 	else if (name == "toon") {
 		this->ui.NoneShaderButton->setDefault(false);
 		this->ui.ToonShaderButton->setDefault(true);
 		this->ui.SobelShaderButton->setDefault(false);
+		this->ui.DiscoShaderButton->setDefault(false);
+		this->ui.NoiseShaderButton->setDefault(false);
 		//this->ui.viewport->exampleShader();
 	}
 	else if (name == "sobel") {
 		this->ui.NoneShaderButton->setDefault(false);
 		this->ui.ToonShaderButton->setDefault(false);
 		this->ui.SobelShaderButton->setDefault(true);
+		this->ui.DiscoShaderButton->setDefault(false);
+		this->ui.NoiseShaderButton->setDefault(false);
 	}
-
+	else if (name == "disco") {
+		this->ui.NoneShaderButton->setDefault(false);
+		this->ui.ToonShaderButton->setDefault(false);
+		this->ui.SobelShaderButton->setDefault(false);
+		this->ui.DiscoShaderButton->setDefault(true);
+		this->ui.NoiseShaderButton->setDefault(false);
+	}
+	else if (name == "noise") {
+		this->ui.NoneShaderButton->setDefault(false);
+		this->ui.ToonShaderButton->setDefault(false);
+		this->ui.SobelShaderButton->setDefault(false);
+		this->ui.DiscoShaderButton->setDefault(false);
+		this->ui.NoiseShaderButton->setDefault(true);
+	}
 	this->ui.viewport->shaderName = name.toStdString();
 	this->ui.viewport->isShaderOn = !(this->ui.viewport->isShaderOn);
 	this->ui.viewport->update();
