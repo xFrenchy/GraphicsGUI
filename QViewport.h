@@ -63,6 +63,7 @@ public:
 	void printProgramInfoLog(GLuint obj);
 	void exampleShader();
 	void clear();
+	void clearModel();
 
 	int xSlider;
 	int ySlider;

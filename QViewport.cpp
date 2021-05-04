@@ -424,3 +424,18 @@ void QViewport::clear()
 	}
 }
 
+void QViewport::clearModel()
+{
+	this->vertices_qty = 0;
+	this->polygons_qty = 0;
+	this->modelName = "";
+	this->isRendered = false;
+	for (int i = 0; i < 40000; ++i) {
+		if (i < 20000) {
+			vertex[i].x = vertex[i].y = vertex[i].z = 0.0;
+			mapcoord[i].u = mapcoord[i].v = 0.0;
+		}
+		polygon[i].a = polygon[i].b = polygon[i].c = 0.0;
+	}
+}
+

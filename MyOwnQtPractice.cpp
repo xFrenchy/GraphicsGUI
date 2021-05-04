@@ -46,7 +46,7 @@ void MyOwnQtPractice::generateMeshFromFile(QString name)
 {
 	//Check if a model is already rendered.
 	if (this->ui.viewport->isRendered == true) {
-		this->clear();
+		this->ui.viewport->clearModel();
 	}
 
 	name = name.toLower();
