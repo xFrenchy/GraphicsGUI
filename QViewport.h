@@ -64,6 +64,7 @@ public:
 	void exampleShader();
 	void clear();
 	void clearModel();
+	Vertecies crossProduct(Vertecies U, Vertecies V);
 
 	int xSlider;
 	int ySlider;

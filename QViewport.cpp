@@ -43,7 +43,7 @@ QViewport::~QViewport() {
 void QViewport::initializeGL() {
 	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 
-	//glShadeModel(GL_SMOOTH);	//enables intensity reflected light at each polygon vertex and interpolates across polygon at each point	
+	glShadeModel(GL_SMOOTH);	//enables intensity reflected light at each polygon vertex and interpolates across polygon at each point	
 	//https://community.khronos.org/t/shininess/18327/10
 	//glEnable(GL_COLOR_MATERIAL);
 	//glColorMaterial(GL_FRONT, GL_SPECULAR);
@@ -51,7 +51,7 @@ void QViewport::initializeGL() {
 	//glDepthFunc(GL_LESS);
 	//glFrontFace(GL_CCW);
 	glEnable(GL_NORMALIZE);	//needed to enable normals for surfaces for lights
-	glEnable(GL_AUTO_NORMAL);	//GIVE ME THE FUCKING NORMALS THAT I REQUIRE
+	glEnable(GL_AUTO_NORMAL);
 	//glEnable(GL_TEXTURE_2D);
 
 	glEnable(GL_LIGHTING);
@@ -128,24 +128,18 @@ void QViewport::paintGL() {
 			//glNormal3f(1, 0, 0);
 			//glNormal3f(0, 1, 0);
 
-			float Nx = (vertex[polygon[i].b].y * vertex[polygon[i].c].z) - (vertex[polygon[i].b].z * vertex[polygon[i].c].y);
-			float Ny = (vertex[polygon[i].b].z * vertex[polygon[i].c].x) - (vertex[polygon[i].b].x * vertex[polygon[i].c].z);
-			float Nz = (vertex[polygon[i].b].x * vertex[polygon[i].c].y) - (vertex[polygon[i].b].y * vertex[polygon[i].c].x);
-			glNormal3f(Nx, Ny, Nz);
+			Vertecies normal = this->crossProduct(vertex[polygon[i].b], vertex[polygon[i].c]);
+			glNormal3f(normal.x, normal.y, normal.z);
 			glTexCoord2f(mapcoord[polygon[i].a].u, mapcoord[polygon[i].a].v);
 			glVertex3f(vertex[polygon[i].a].x, vertex[polygon[i].a].y, vertex[polygon[i].a].z);
 
-			Nx = (vertex[polygon[i].a].y * vertex[polygon[i].c].z) - (vertex[polygon[i].a].z * vertex[polygon[i].c].y);
-			Ny = (vertex[polygon[i].a].z * vertex[polygon[i].c].x) - (vertex[polygon[i].a].x * vertex[polygon[i].c].z);
-			Nz = (vertex[polygon[i].a].x * vertex[polygon[i].c].y) - (vertex[polygon[i].a].y * vertex[polygon[i].c].x);
-			glNormal3f(Nx, Ny, Nz);
+			normal = this->crossProduct(vertex[polygon[i].a], vertex[polygon[i].c]);
+			glNormal3f(normal.x, normal.y, normal.z);
 			glTexCoord2f(mapcoord[polygon[i].b].u, mapcoord[polygon[i].b].v);
 			glVertex3f(vertex[polygon[i].b].x, vertex[polygon[i].b].y, vertex[polygon[i].b].z);
 
-			Nx = (vertex[polygon[i].a].y * vertex[polygon[i].b].z) - (vertex[polygon[i].a].z * vertex[polygon[i].b].y);
-			Ny = (vertex[polygon[i].a].z * vertex[polygon[i].b].x) - (vertex[polygon[i].a].x * vertex[polygon[i].b].z);
-			Nz = (vertex[polygon[i].a].x * vertex[polygon[i].b].y) - (vertex[polygon[i].a].y * vertex[polygon[i].b].x);
-			glNormal3f(Nx, Ny, Nz);
+			normal = this->crossProduct(vertex[polygon[i].b], vertex[polygon[i].a]);
+			glNormal3f(normal.x, normal.y, normal.z);
 			glTexCoord2f(mapcoord[polygon[i].c].u, mapcoord[polygon[i].c].v);
 			glVertex3f(vertex[polygon[i].c].x, vertex[polygon[i].c].y, vertex[polygon[i].c].z);
 		}
@@ -439,5 +433,14 @@ void QViewport::clearModel()
 		}
 		polygon[i].a = polygon[i].b = polygon[i].c = 0.0;
 	}
+}
+
+Vertecies QViewport::crossProduct(Vertecies U, Vertecies V)
+{
+	Vertecies normal;
+	normal.x = (U.y * V.z) - (U.z * V.y);
+	normal.y = (U.z * V.x) - (U.x * V.z);
+	normal.z = (U.x * V.y) - (U.y * V.x);
+	return normal;
 }
 
