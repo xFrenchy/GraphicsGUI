@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MyOwnQtPractice_t {
-    QByteArrayData data[20];
-    char stringdata0[260];
+    QByteArrayData data[21];
+    char stringdata0[267];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -37,24 +37,25 @@ QT_MOC_LITERAL(2, 29, 0), // ""
 QT_MOC_LITERAL(3, 30, 3), // "val"
 QT_MOC_LITERAL(4, 34, 12), // "yChangeLevel"
 QT_MOC_LITERAL(5, 47, 12), // "zChangeLevel"
-QT_MOC_LITERAL(6, 60, 20), // "generateMeshFromFile"
-QT_MOC_LITERAL(7, 81, 4), // "name"
-QT_MOC_LITERAL(8, 86, 5), // "clear"
-QT_MOC_LITERAL(9, 92, 13), // "updateAmbient"
-QT_MOC_LITERAL(10, 106, 14), // "updateSpecular"
-QT_MOC_LITERAL(11, 121, 13), // "updateDiffuse"
-QT_MOC_LITERAL(12, 135, 19), // "toggleLightDistance"
-QT_MOC_LITERAL(13, 155, 17), // "toggleEnableLight"
-QT_MOC_LITERAL(14, 173, 11), // "selectLight"
-QT_MOC_LITERAL(15, 185, 16), // "updateLightCoord"
-QT_MOC_LITERAL(16, 202, 11), // "updateShiny"
-QT_MOC_LITERAL(17, 214, 14), // "updateCamCoord"
-QT_MOC_LITERAL(18, 229, 17), // "updateAllCamCoord"
-QT_MOC_LITERAL(19, 247, 12) // "selectShader"
+QT_MOC_LITERAL(6, 60, 6), // "oooWee"
+QT_MOC_LITERAL(7, 67, 20), // "generateMeshFromFile"
+QT_MOC_LITERAL(8, 88, 4), // "name"
+QT_MOC_LITERAL(9, 93, 5), // "clear"
+QT_MOC_LITERAL(10, 99, 13), // "updateAmbient"
+QT_MOC_LITERAL(11, 113, 14), // "updateSpecular"
+QT_MOC_LITERAL(12, 128, 13), // "updateDiffuse"
+QT_MOC_LITERAL(13, 142, 19), // "toggleLightDistance"
+QT_MOC_LITERAL(14, 162, 17), // "toggleEnableLight"
+QT_MOC_LITERAL(15, 180, 11), // "selectLight"
+QT_MOC_LITERAL(16, 192, 16), // "updateLightCoord"
+QT_MOC_LITERAL(17, 209, 11), // "updateShiny"
+QT_MOC_LITERAL(18, 221, 14), // "updateCamCoord"
+QT_MOC_LITERAL(19, 236, 17), // "updateAllCamCoord"
+QT_MOC_LITERAL(20, 254, 12) // "selectShader"
 
     },
     "MyOwnQtPractice\0xChangeLevel\0\0val\0"
-    "yChangeLevel\0zChangeLevel\0"
+    "yChangeLevel\0zChangeLevel\0oooWee\0"
     "generateMeshFromFile\0name\0clear\0"
     "updateAmbient\0updateSpecular\0updateDiffuse\0"
     "toggleLightDistance\0toggleEnableLight\0"
@@ -82,33 +83,33 @@ static const uint qt_meta_data_MyOwnQtPractice[] = {
        4,    1,  102,    2, 0x0a /* Public */,
        5,    1,  105,    2, 0x0a /* Public */,
        6,    0,  108,    2, 0x0a /* Public */,
-       6,    1,  109,    2, 0x0a /* Public */,
-       8,    0,  112,    2, 0x0a /* Public */,
-       9,    1,  113,    2, 0x0a /* Public */,
-      10,    1,  116,    2, 0x0a /* Public */,
-      11,    1,  119,    2, 0x0a /* Public */,
-      12,    0,  122,    2, 0x0a /* Public */,
-      13,    0,  123,    2, 0x0a /* Public */,
-      14,    1,  124,    2, 0x0a /* Public */,
-      15,    1,  127,    2, 0x0a /* Public */,
-      16,    1,  130,    2, 0x0a /* Public */,
-      17,    1,  133,    2, 0x0a /* Public */,
-      18,    0,  136,    2, 0x0a /* Public */,
-      19,    0,  137,    2, 0x0a /* Public */,
+       7,    1,  109,    2, 0x0a /* Public */,
+       9,    0,  112,    2, 0x0a /* Public */,
+      10,    1,  113,    2, 0x0a /* Public */,
+      11,    1,  116,    2, 0x0a /* Public */,
+      12,    1,  119,    2, 0x0a /* Public */,
+      13,    0,  122,    2, 0x0a /* Public */,
+      14,    0,  123,    2, 0x0a /* Public */,
+      15,    1,  124,    2, 0x0a /* Public */,
+      16,    1,  127,    2, 0x0a /* Public */,
+      17,    1,  130,    2, 0x0a /* Public */,
+      18,    1,  133,    2, 0x0a /* Public */,
+      19,    0,  136,    2, 0x0a /* Public */,
+      20,    0,  137,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void, QMetaType::QString,    8,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::Void, QMetaType::QString,    8,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
     QMetaType::Void, QMetaType::Int,    3,
@@ -127,7 +128,7 @@ void MyOwnQtPractice::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int 
         case 0: _t->xChangeLevel((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 1: _t->yChangeLevel((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 2: _t->zChangeLevel((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 3: _t->generateMeshFromFile(); break;
+        case 3: _t->oooWee(); break;
         case 4: _t->generateMeshFromFile((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 5: _t->clear(); break;
         case 6: _t->updateAmbient((*reinterpret_cast< int(*)>(_a[1]))); break;

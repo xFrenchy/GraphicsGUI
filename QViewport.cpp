@@ -123,22 +123,18 @@ void QViewport::paintGL() {
 	glBegin(GL_TRIANGLES);
 		glColor3f(1.0f, 0.0f, 0.0f);	//this will be cancelled due to the lighting
 		for (int i = 0; i < polygons_qty; ++i) {
-			//Accidentally metal spiky shell shader normals 
-			//glNormal3f(0, 0, 1);
-			//glNormal3f(1, 0, 0);
-			//glNormal3f(0, 1, 0);
+			Vertecies U = this->subtract(vertex[polygon[i].b], vertex[polygon[i].a]);
+			Vertecies V = this->subtract(vertex[polygon[i].c], vertex[polygon[i].a]);
 
-			Vertecies normal = this->crossProduct(vertex[polygon[i].b], vertex[polygon[i].c]);
+			Vertecies normal = this->crossProduct(U, V);
 			glNormal3f(normal.x, normal.y, normal.z);
 			glTexCoord2f(mapcoord[polygon[i].a].u, mapcoord[polygon[i].a].v);
 			glVertex3f(vertex[polygon[i].a].x, vertex[polygon[i].a].y, vertex[polygon[i].a].z);
 
-			normal = this->crossProduct(vertex[polygon[i].a], vertex[polygon[i].c]);
 			glNormal3f(normal.x, normal.y, normal.z);
 			glTexCoord2f(mapcoord[polygon[i].b].u, mapcoord[polygon[i].b].v);
 			glVertex3f(vertex[polygon[i].b].x, vertex[polygon[i].b].y, vertex[polygon[i].b].z);
 
-			normal = this->crossProduct(vertex[polygon[i].b], vertex[polygon[i].a]);
 			glNormal3f(normal.x, normal.y, normal.z);
 			glTexCoord2f(mapcoord[polygon[i].c].u, mapcoord[polygon[i].c].v);
 			glVertex3f(vertex[polygon[i].c].x, vertex[polygon[i].c].y, vertex[polygon[i].c].z);
@@ -442,5 +438,14 @@ Vertecies QViewport::crossProduct(Vertecies U, Vertecies V)
 	normal.y = (U.z * V.x) - (U.x * V.z);
 	normal.z = (U.x * V.y) - (U.y * V.x);
 	return normal;
+}
+
+Vertecies QViewport::subtract(Vertecies p1, Vertecies p2)
+{
+	Vertecies result;
+	result.x = p1.x - p2.x;
+	result.y = p1.y - p2.y;
+	result.z = p1.z - p2.z;
+	return result;
 }
 

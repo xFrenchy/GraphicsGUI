@@ -1,5 +1,6 @@
 #include "MyOwnQtPractice.h"
 #include <iostream>
+#include <stdlib.h>
 
 MyOwnQtPractice::MyOwnQtPractice(QWidget *parent)
     : QMainWindow(parent)
@@ -30,15 +31,33 @@ void MyOwnQtPractice::zChangeLevel(int val) {
 	this->ui.viewport->update();
 }
 
-void MyOwnQtPractice::generateMeshFromFile()
+void MyOwnQtPractice::oooWee()
 {
-	//this->ui.viewport->read3DS("Models/cup_2.3DS");
-	this->ui.viewport->read3DS("Models/spoon.3ds"); 
-	QString text = "Model Name: ";
-	text.append(QString::fromStdString(this->ui.viewport->modelName));
+	int index = this->ui.viewport->lightSelected;
+	this->ui.viewport->ambLight[index].r = float((rand() % 100)) / 100.0;	//pseudo random
+	this->ui.viewport->ambLight[index].g = float((rand() % 100)) / 100.0;
+	this->ui.viewport->ambLight[index].b = float((rand() % 100)) / 100.0;
 
-	this->ui.ModelLabel->setText(text);
-	this->ui.viewport->isRendered = true;
+	this->ui.viewport->difLight[index].r = float((rand() % 100)) / 100.0;
+	this->ui.viewport->difLight[index].g = float((rand() % 100)) / 100.0;
+	this->ui.viewport->difLight[index].b = float((rand() % 100)) / 100.0;
+
+	this->ui.viewport->specLight[index].r = float((rand() % 100)) / 100.0;
+	this->ui.viewport->specLight[index].g = float((rand() % 100)) / 100.0;
+	this->ui.viewport->specLight[index].b = float((rand() % 100)) / 100.0;
+
+	this->ui.viewport->ambMat.r = float((rand() % 100)) / 100.0;
+	this->ui.viewport->ambMat.g = float((rand() % 100)) / 100.0;
+	this->ui.viewport->ambMat.b = float((rand() % 100)) / 100.0;
+
+	this->ui.viewport->difMat.r = float((rand() % 100)) / 100.0;
+	this->ui.viewport->difMat.g = float((rand() % 100)) / 100.0;
+	this->ui.viewport->difMat.b = float((rand() % 100)) / 100.0;
+
+	this->ui.viewport->specMat.r = float((rand() % 100)) / 100.0;
+	this->ui.viewport->specMat.g = float((rand() % 100)) / 100.0;
+	this->ui.viewport->specMat.b = float((rand() % 100)) / 100.0;
+
 	this->ui.viewport->update();
 }
 

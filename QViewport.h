@@ -65,6 +65,7 @@ public:
 	void clear();
 	void clearModel();
 	Vertecies crossProduct(Vertecies U, Vertecies V);
+	Vertecies subtract(Vertecies p1, Vertecies p2);
 
 	int xSlider;
 	int ySlider;

@@ -15,7 +15,7 @@ public slots:
 	void xChangeLevel(int val);
 	void yChangeLevel(int val);
 	void zChangeLevel(int val);
-	void generateMeshFromFile();	//deprecated, keeping it for you tobby
+	void oooWee();	//keeping it for you tobby
 	void generateMeshFromFile(QString name);
 	void clear();
 	void updateAmbient(int val);
